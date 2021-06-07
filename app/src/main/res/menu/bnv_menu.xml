@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/bottom_navigation_item_board"
+        app:showAsAction="always"
+        android:enabled="true"
+        android:title="home"
+        android:icon="@drawable/ic_launcher_foreground" />
+
+    <item
+        android:id="@+id/bottom_navigation_item_notification"
+        app:showAsAction="always"
+        android:enabled="true"
+        android:title="notification"
+        android:icon="@drawable/ic_launcher_foreground" />
+
+    <item
+        android:id="@+id/bottom_navigation_item_myfeed"
+        app:showAsAction="always"
+        android:enabled="true"
+        android:title="profile"
+        android:icon="@drawable/ic_launcher_foreground" />
+
+</menu>
