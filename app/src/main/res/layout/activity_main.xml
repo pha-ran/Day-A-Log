@@ -23,6 +23,7 @@
         android:layout_alignParentEnd="true"
         app:menu="@menu/bnv_menu"
         app:labelVisibilityMode="unlabeled"
-        app:itemIconTint="@drawable/bnv_menu_color" />
+        app:itemIconTint="@drawable/bnv_menu_color"
+        app:itemIconSize="50dp" />
 
 </RelativeLayout>
