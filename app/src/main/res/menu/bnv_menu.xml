@@ -7,7 +7,7 @@
         app:showAsAction="always"
         android:enabled="true"
         android:title="home"
-        android:icon="@drawable/ic_launcher_foreground" />
+        android:icon="@drawable/ic_bnv_menu_home" />
 
     <item
         android:id="@+id/bottom_navigation_item_notification"
