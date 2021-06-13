@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/tb_home_hash"
+        app:showAsAction="always"
+        android:enabled="true"
+        android:title="hash"
+        android:icon="@drawable/ic_tb_home_menu_hash" />
+
+    <item
+        android:id="@+id/tb_home_search"
+        app:showAsAction="always"
+        android:enabled="true"
+        android:title="search"
+        android:icon="@drawable/ic_tb_home_menu_search" />
+
+    <item
+        android:id="@+id/tb_home_add"
+        app:showAsAction="always"
+        android:enabled="true"
+        android:title="add"
+        android:icon="@drawable/ic_tb_home_menu_add" />
+
+</menu>
