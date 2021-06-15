@@ -16,12 +16,14 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
         app:menu="@menu/tb_home_menu"
         app:labelVisibilityMode="unlabeled"
         app:itemIconSize="50dp"
         app:itemIconTint="@color/gray"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme" />
+        app:title="Day A Logue"
+        app:titleTextAppearance="@style/ToolbarTitleText"/>
 
 </RelativeLayout>
