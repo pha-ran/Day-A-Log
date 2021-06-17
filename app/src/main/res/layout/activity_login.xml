@@ -16,39 +16,49 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_margin="64dp">
 
+        <!--ToDo-->
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/ic_launcher_foreground" />
 
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="64dp"
-            android:layout_height="32dp"
-            app:srcCompat="@drawable/ic_launcher_foreground"
-            android:layout_marginTop="100dp"
-            android:layout_gravity="center_horizontal"/>
+        <!--ToDo-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_gravity="center_horizontal"
+            tools:text="로그인"
+            android:fontFamily="monospace"
+            android:textStyle="bold"
+            android:textSize="24sp"
+            android:textColor="#3d3d3d"
+            android:lineSpacingExtra="8sp"
+            />
 
+        <!--ToDo-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_marginTop="24dp">
 
-            <ImageView
+            <TextView
                 android:id="@+id/imageView3"
-                android:layout_width="76dp"
-                android:layout_height="32dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/ic_launcher_foreground" />
+                android:gravity="center_horizontal"
+                tools:text="처음이신가요?" />
 
-            <ImageView
+            <TextView
                 android:id="@+id/imageView4"
-                android:layout_width="76dp"
-                android:layout_height="32dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/ic_launcher_foreground" />
+                android:gravity="center_horizontal"
+                tools:text="회원 가입하기" />
         </LinearLayout>
 
         <LinearLayout
