@@ -27,15 +27,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="100dp"
             android:layout_gravity="center_horizontal"
             tools:text="로그인"
             android:fontFamily="monospace"
             android:textStyle="bold"
             android:textSize="24sp"
             android:textColor="#3d3d3d"
-            android:lineSpacingExtra="8sp"
-            />
+            android:lineSpacingExtra="8sp" />
 
         <!--ToDo-->
         <LinearLayout
@@ -93,18 +92,26 @@
             android:text="Button"
             android:layout_marginTop="16dp" />
 
-        <ImageView
+        <!--ToDo-->
+        <TextView
             android:id="@+id/imageView5"
             android:layout_width="160dp"
             android:layout_height="32dp"
             android:layout_gravity="right"
-            app:srcCompat="@drawable/ic_launcher_foreground" />
+            android:gravity="center_vertical||right"
+            tools:text="이메일과 비밀번호를 잊었나요?"
+            android:textSize="10sp"/>
 
-        <ImageView
+        <TextView
             android:id="@+id/imageView6"
             android:layout_width="match_parent"
             android:layout_height="16dp"
-            app:srcCompat="@drawable/ic_launcher_foreground" />
+            android:gravity="center_horizontal"
+            android:background="@drawable/ic_activity_login_boundary_line"
+            android:backgroundTint="#e2e2e2"
+            android:text="OR"
+            android:textSize="10sp"
+            android:textColor="#e2e2e2"/>
 
         <ImageView
             android:id="@+id/imageView7"
