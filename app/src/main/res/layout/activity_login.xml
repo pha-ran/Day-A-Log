@@ -57,7 +57,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
-                tools:text="회원 가입하기" />
+                tools:text="회원 가입하기"
+                android:textColor="@color/base"
+                android:textStyle="bold"/>
         </LinearLayout>
 
         <LinearLayout
@@ -68,29 +70,32 @@
 
             <EditText
                 android:id="@+id/editTextTextPersonName"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:hint="Name" />
+                android:hint="Id / Email / Phone number"
+                android:fontFamily="sans-serif-light"/>
 
             <EditText
                 android:id="@+id/editTextTextPersonName2"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:hint="Name" />
+                android:hint="Password"
+                android:fontFamily="sans-serif-light" />
         </LinearLayout>
 
         <Button
             android:id="@+id/button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Button"
-            android:layout_marginTop="16dp" />
+            android:layout_marginTop="16dp"
+            android:text="로그인"
+            android:fontFamily="sans-serif-light" />
 
         <!--ToDo-->
         <TextView
@@ -100,7 +105,8 @@
             android:layout_gravity="right"
             android:gravity="center_vertical||right"
             tools:text="이메일과 비밀번호를 잊었나요?"
-            android:textSize="10sp"/>
+            android:textSize="10sp"
+            android:textColor="@color/base" />
 
         <TextView
             android:id="@+id/imageView6"
@@ -117,6 +123,7 @@
             android:id="@+id/imageView7"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             app:srcCompat="@drawable/kakao_login_medium_wide" />
 
     </LinearLayout>
