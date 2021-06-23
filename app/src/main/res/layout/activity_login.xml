@@ -103,7 +103,7 @@
             android:layout_width="160dp"
             android:layout_height="32dp"
             android:layout_gravity="right"
-            android:gravity="center_vertical||right"
+            android:gravity="center_vertical|right"
             tools:text="이메일과 비밀번호를 잊었나요?"
             android:textSize="10sp"
             android:textColor="@color/base" />
