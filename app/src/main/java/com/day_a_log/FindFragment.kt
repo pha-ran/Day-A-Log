@@ -11,8 +11,8 @@ class FindFragment : Fragment() {
     private lateinit var binding : FragmentFindBinding
 
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?,
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         binding = FragmentFindBinding.inflate(inflater, container, false)
 
