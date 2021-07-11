@@ -1,4 +1,4 @@
-package com.day_a_log
+package com.day_a_log.src.login
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

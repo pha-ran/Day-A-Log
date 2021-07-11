@@ -1,20 +1,20 @@
-package com.day_a_log
+package com.day_a_log.src.login
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.day_a_log.databinding.FragmentHomeBinding
+import com.day_a_log.databinding.FragmentFindBinding
 
-class HomeFragment : Fragment() {
-    private lateinit var binding : FragmentHomeBinding
+class FindFragment : Fragment() {
+    private lateinit var binding : FragmentFindBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentHomeBinding.inflate(inflater, container,false)
+        binding = FragmentFindBinding.inflate(inflater, container, false)
 
         return binding.root
     }

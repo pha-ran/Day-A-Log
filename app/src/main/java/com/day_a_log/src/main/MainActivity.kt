@@ -1,7 +1,8 @@
-package com.day_a_log
+package com.day_a_log.src.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.day_a_log.R
 import com.day_a_log.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
