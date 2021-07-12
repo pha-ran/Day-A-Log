@@ -1,4 +1,4 @@
-package com.day_a_log.src.login
+package com.day_a_log.src.login.find
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

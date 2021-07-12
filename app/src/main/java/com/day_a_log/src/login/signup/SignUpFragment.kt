@@ -1,21 +1,21 @@
-package com.day_a_log.src.login
+package com.day_a_log.src.login.signup
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.day_a_log.databinding.FragmentLoginBinding
+import com.day_a_log.databinding.FragmentSignUpBinding
 
-class LoginFragment : Fragment() {
-    private lateinit var binding : FragmentLoginBinding
+class SignUpFragment : Fragment() {
+    private lateinit var binding : FragmentSignUpBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentLoginBinding.inflate(inflater, container, false)
-
+        binding = FragmentSignUpBinding.inflate(inflater, container, false)
+        
         return binding.root
     }
 }
