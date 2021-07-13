@@ -1,15 +1,14 @@
 package com.day_a_log.src.login
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.day_a_log.config.BaseActivity
 import com.day_a_log.databinding.ActivityLoginBinding
 
-class LoginActivity : AppCompatActivity() {
-    private lateinit var binding : ActivityLoginBinding
+class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::inflate) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityLoginBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+
+
     }
 }
