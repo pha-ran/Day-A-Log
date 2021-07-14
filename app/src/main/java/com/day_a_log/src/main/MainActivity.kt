@@ -8,7 +8,6 @@ import com.day_a_log.databinding.ActivityMainBinding
 class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        setTheme(R.style.Theme_Day_A_Log)
         super.onCreate(savedInstanceState)
 
 

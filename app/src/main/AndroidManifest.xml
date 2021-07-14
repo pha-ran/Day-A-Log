@@ -15,18 +15,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Day_A_Log"
         tools:ignore="AllowBackup">
-        <activity android:name=".src.login.LoginActivity"
-            android:screenOrientation="portrait">
-        </activity>
         <activity
-            android:name=".src.main.MainActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/SplashTheme">
+            android:name=".src.splash.SplashActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".src.login.LoginActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".src.main.MainActivity"
+            android:screenOrientation="portrait">
         </activity>
     </application>
 
