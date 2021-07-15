@@ -4,17 +4,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="64dp"
     android:orientation="vertical"
     tools:context=".src.login.login.LoginFragment">
 
     <!--ToDo-->
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        tools:text="로그인"
-        android:fontFamily="monospace"
+        android:gravity="center_horizontal"
+        android:text="로그인"
         android:textStyle="bold"
         android:textSize="24sp"
         android:textColor="#3d3d3d"
@@ -24,24 +22,21 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="24dp">
+        android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/imageView3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_horizontal"
-            tools:text="처음이신가요?" />
+            android:text="처음이신가요?" />
 
         <TextView
-            android:id="@+id/imageView4"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_horizontal"
-            tools:text="회원 가입하기"
+            android:text="회원 가입하기"
             android:textColor="@color/base"
             android:textStyle="bold"/>
     </LinearLayout>
@@ -49,8 +44,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="16dp">
+        android:orientation="vertical">
 
         <EditText
             android:id="@+id/editTextTextPersonName"
@@ -77,23 +71,19 @@
         android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:text="로그인"
         android:fontFamily="sans-serif-light" />
 
     <!--ToDo-->
     <TextView
-        android:id="@+id/imageView5"
-        android:layout_width="160dp"
-        android:layout_height="32dp"
-        android:layout_gravity="right"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center_vertical|right"
-        tools:text="이메일과 비밀번호를 잊었나요?"
-        android:textSize="10sp"
+        android:text="이메일과 비밀번호를 잊었나요?"
+        android:textSize="12sp"
         android:textColor="@color/base" />
 
     <TextView
-        android:id="@+id/imageView6"
         android:layout_width="match_parent"
         android:layout_height="16dp"
         android:gravity="center_horizontal"
@@ -107,7 +97,6 @@
         android:id="@+id/imageView7"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         app:srcCompat="@drawable/kakao_login_medium_wide" />
 
 </LinearLayout>
