@@ -1,6 +1,7 @@
 package com.day_a_log.src.login
 
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import com.day_a_log.R
 import com.day_a_log.config.BaseActivity
 import com.day_a_log.databinding.ActivityLoginBinding
@@ -11,6 +12,10 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        supportFragmentManager.beginTransaction().replace(R.id.fl, LoginFragment()).commitAllowingStateLoss()
+        replaceFragment(LoginFragment())
+    }
+
+    fun replaceFragment(F : Fragment) {
+        supportFragmentManager.beginTransaction().replace(R.id.fl, F).commitAllowingStateLoss()
     }
 }
