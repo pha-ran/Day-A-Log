@@ -21,9 +21,9 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginTop="10dp">
+            android:background="#f9fdfb">
 
             <ImageView
                 android:id="@+id/imageView9"
@@ -44,7 +44,7 @@
                     android:layout_weight="1"
                     android:layout_marginRight="8dp"
                     android:gravity="right"
-                    android:text="TextView" />
+                    android:text="비밀번호를 잊으셨나요?" />
 
                 <TextView
                     android:id="@+id/textView2"
@@ -53,7 +53,9 @@
                     android:layout_weight="1"
                     android:layout_marginLeft="8dp"
                     android:gravity="left"
-                    android:text="TextView" />
+                    android:text="Email로 찾기"
+                    android:textStyle="bold"
+                    android:textColor="@color/base" />
             </LinearLayout>
 
             <LinearLayout
@@ -66,9 +68,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginHorizontal="8dp"
                     android:ems="10"
                     android:inputType="textPersonName"
-                    android:text="Name" />
+                    android:hint="Email"
+                    android:background="@android:color/white" />
 
                 <ImageView
                     android:id="@+id/imageView10"
@@ -80,16 +85,20 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="visible">
 
                 <EditText
                     android:id="@+id/editTextTextPersonName5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:layout_marginHorizontal="8dp"
+                    android:layout_gravity="center_vertical"
                     android:ems="10"
                     android:inputType="textPersonName"
-                    android:text="Name" />
+                    android:hint="Code"
+                    android:background="@android:color/white" />
 
                 <ImageView
                     android:id="@+id/imageView11"

@@ -22,7 +22,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginVertical="8dp">
 
         <TextView
             android:layout_width="0dp"
@@ -80,6 +81,7 @@
         android:id="@+id/tv_find"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginVertical="8dp"
         android:gravity="center_vertical|right"
         android:text="이메일과 비밀번호를 잊었나요?"
         android:textSize="12sp"
