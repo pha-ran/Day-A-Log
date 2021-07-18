@@ -47,31 +47,44 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@drawable/bg_fragment_login_edittext">
+        android:background="@drawable/bg_fragment_login_edittext"
+        app:passwordToggleEnabled="true">
 
         <EditText
-            android:id="@+id/editTextTextPersonName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_margin="8dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginVertical="4dp"
             android:ems="10"
-            android:inputType="textPersonName"
+            android:inputType="textWebEmailAddress"
             android:hint="Id / Email / Phone number"
             android:fontFamily="sans-serif-light"
             android:background="@android:color/transparent" />
 
-        <EditText
-            android:id="@+id/editTextTextPersonName2"
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:src="@drawable/bg_fragment_login_edittext_line" />
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_margin="8dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="Password"
-            android:fontFamily="sans-serif-light"
-            android:background="@android:color/transparent"/>
+            app:passwordToggleEnabled="true"
+            android:background="@android:color/transparent"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:hintEnabled="false">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPassword"
+                android:hint="Password"
+                android:fontFamily="sans-serif-light"
+                android:background="@android:color/transparent"/>
+        </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 
     <Button
