@@ -19,7 +19,7 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="4">
+            android:layout_weight="3.5">
 
             <!--ToDo-->
             <ImageView
@@ -35,7 +35,7 @@
             android:id="@+id/fl"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="6">
+            android:layout_weight="6.5">
 
         </FrameLayout>
 
