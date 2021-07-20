@@ -82,13 +82,13 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
                     android:text="Button"
-                    android:visibility="invisible" />
+                    android:visibility="visible" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:visibility="visible">
+                    android:visibility="invisible">
 
                     <EditText
                         android:id="@+id/editTextTextPersonName7"
