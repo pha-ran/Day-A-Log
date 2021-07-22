@@ -16,5 +16,15 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding>(FragmentSignUpBinding
         binding.tvLogin.setOnClickListener {
             (activity as LoginActivity).replaceFragment(LoginFragment())
         }
+
+        binding.btnSend.setOnClickListener {
+            binding.btnSend.visibility = View.GONE
+            binding.linearCode.visibility = View.VISIBLE
+        }
+
+        binding.btnCode.setOnClickListener {
+            binding.linearKey.visibility = View.GONE
+            binding.linearIdPassword.visibility = View.VISIBLE
+        }
     }
 }
