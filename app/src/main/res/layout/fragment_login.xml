@@ -56,7 +56,7 @@
             android:layout_gravity="center_horizontal"
             app:passwordToggleEnabled="false"
             android:background="@android:color/transparent"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            style="@style/IdDenseOutlined"
             app:hintEnabled="false">
 
             <EditText
@@ -81,7 +81,7 @@
             android:layout_gravity="center_horizontal"
             app:passwordToggleEnabled="true"
             android:background="@android:color/transparent"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            style="@style/PwDenseOutlined"
             app:hintEnabled="false">
 
             <EditText

@@ -75,11 +75,11 @@
                     android:hint="Email"
                     android:background="@android:color/white" />
 
-                <ImageView
+                <ImageButton
                     android:id="@+id/imageView10"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/ic_bnv_menu_home" />
+                    android:background="@drawable/ic_send_button" />
             </LinearLayout>
 
             <LinearLayout

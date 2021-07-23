@@ -22,4 +22,31 @@
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">#4c4c4c</item>
     </style>
+
+    <!-- Login Fragment TextInputLayout ID Style -->
+    <style name="IdDenseOutlined" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <item name="materialThemeOverlay">@style/IdThemeOverlayOutlinedDense</item>
+    </style>
+    <style name="IdThemeOverlayOutlinedDense">
+        <item name="editTextStyle">@style/TextInputLayout_id_outlinedBox_dense_h
+        </item>
+    </style>
+    <style name="TextInputLayout_id_outlinedBox_dense_h" parent="@style/Widget.MaterialComponents.TextInputEditText.OutlinedBox.Dense">
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
+    </style>
+
+    <!-- Login Fragment TextInputLayout ID Style -->
+    <style name="PwDenseOutlined" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <item name="materialThemeOverlay">@style/PwThemeOverlayOutlinedDense</item>
+    </style>
+    <style name="PwThemeOverlayOutlinedDense">
+        <item name="editTextStyle">@style/TextInputLayout_pw_outlinedBox_dense_h
+        </item>
+    </style>
+    <style name="TextInputLayout_pw_outlinedBox_dense_h" parent="@style/Widget.MaterialComponents.TextInputEditText.OutlinedBox.Dense">
+        <item name="android:paddingTop">0dp</item>
+        <item name="android:paddingBottom">0dp</item>
+    </style>
+
 </resources>

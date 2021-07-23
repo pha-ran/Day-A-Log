@@ -77,12 +77,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <Button
+                <ImageButton
                     android:id="@+id/btn_send"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
-                    android:text="Button"
+                    android:background="@drawable/ic_send_button"
                     android:visibility="visible" />
 
                 <LinearLayout
@@ -106,7 +106,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Button" />
+                        android:text="인증" />
 
                 </LinearLayout>
             </FrameLayout>
