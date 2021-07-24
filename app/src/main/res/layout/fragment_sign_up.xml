@@ -12,29 +12,31 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:text="회원 가입" />
+        android:text="회원 가입"
+        android:textStyle="bold"
+        android:textSize="24sp"
+        android:textColor="#3d3d3d" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginVertical="16dp"
         android:orientation="horizontal">
 
         <TextView
             android:id="@+id/textView4"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_marginRight="8dp"
-            android:gravity="right"
+            android:gravity="center_horizontal"
             android:text="계정이 있으신가요?" />
 
         <TextView
             android:id="@+id/tv_login"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_marginLeft="8dp"
-            android:gravity="left"
+            android:gravity="center_horizontal"
             android:text="로그인하기"
             android:textColor="#007aff"/>
 
@@ -43,23 +45,33 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@drawable/bg_fragment_login_edittext" >
 
         <EditText
             android:id="@+id/editTextTextPersonName4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="8dp"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="이름" />
+            android:background="@android:color/transparent"
+            android:hint="이름" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:src="@drawable/bg_fragment_login_edittext_line"/>
 
         <EditText
             android:id="@+id/editTextTextPersonName6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="8dp"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="전화번호" />
+            android:background="@android:color/transparent"
+            android:hint="전화번호" />
     </LinearLayout>
 
     <FrameLayout
@@ -89,6 +101,7 @@
                     android:id="@+id/linear_code"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
                     android:orientation="horizontal"
                     android:visibility="invisible">
 
@@ -97,15 +110,18 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:padding="8dp"
                         android:ems="10"
                         android:inputType="textPersonName"
-                        android:text="Name" />
+                        android:background="@drawable/bg_fragment_login_edittext"
+                        android:hint="code" />
 
                     <Button
                         android:id="@+id/btn_code"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:layout_marginLeft="4dp"
                         android:text="인증" />
 
                 </LinearLayout>
@@ -141,23 +157,53 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_marginTop="8dp"
+                android:orientation="vertical"
+                android:background="@drawable/bg_fragment_login_edittext">
 
-                <EditText
-                    android:id="@+id/editTextTextPersonName9"
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:text="Name" />
+                    android:layout_gravity="center_horizontal"
+                    app:passwordToggleEnabled="false"
+                    android:background="@android:color/transparent"
+                    style="@style/IdDenseOutlined"
+                    app:hintEnabled="false">
 
-                <EditText
-                    android:id="@+id/editTextTextPersonName8"
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:ems="10"
+                        android:inputType="textWebEmailAddress"
+                        android:hint="Id"
+                        android:fontFamily="sans-serif-light"
+                        android:background="@android:color/transparent" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:src="@drawable/bg_fragment_login_edittext_line" />
+
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:text="Name" />
+                    android:layout_gravity="center_horizontal"
+                    app:passwordToggleEnabled="true"
+                    android:background="@android:color/transparent"
+                    style="@style/PwDenseOutlined"
+                    app:hintEnabled="false">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:inputType="textPassword"
+                        android:hint="Password"
+                        android:fontFamily="sans-serif-light"
+                        android:background="@android:color/transparent"/>
+                </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
             <LinearLayout
@@ -166,25 +212,17 @@
                 android:orientation="horizontal">
 
                 <CheckBox
-                    android:id="@+id/checkBox"
+                    android:id="@+id/cb_terms"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="CheckBox" />
-
-                <TextView
-                    android:id="@+id/textView6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="TextView" />
+                    android:hint="조건을 읽었으며, 동의합니다."/>
             </LinearLayout>
 
             <Button
-                android:id="@+id/button4"
+                android:id="@+id/btn_add"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Button" />
+                android:text="계정 생성하기" />
 
         </LinearLayout>
     </FrameLayout>
