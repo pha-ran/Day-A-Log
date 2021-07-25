@@ -9,28 +9,27 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:visibility="visible">
+        android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/imageView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            app:srcCompat="@drawable/ic_bnv_menu_home" />
+            app:srcCompat="@drawable/ic_find_page_1" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="#f9fdfb">
+            android:background="#f9fdfb"
+            android:visibility="visible">
 
             <ImageView
-                android:id="@+id/imageView9"
+                android:id="@+id/iv_exit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
-                app:srcCompat="@drawable/ic_bnv_menu_home" />
+                app:srcCompat="@drawable/ic_exit_button" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -70,23 +69,26 @@
                     android:layout_weight="1"
                     android:layout_gravity="center_vertical"
                     android:layout_marginHorizontal="16dp"
+                    android:layout_marginVertical="8dp"
                     android:ems="10"
                     android:inputType="textPersonName"
                     android:hint="Email"
+                    android:textSize="16sp"
                     android:background="@android:color/white" />
 
                 <ImageButton
-                    android:id="@+id/imageView10"
+                    android:id="@+id/btn_send"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/ic_send_button" />
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/linear_key"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:visibility="visible">
+                android:visibility="invisible">
 
                 <EditText
                     android:id="@+id/editTextTextPersonName5"
@@ -98,28 +100,14 @@
                     android:ems="10"
                     android:inputType="textPersonName"
                     android:hint="Code"
+                    android:textSize="16sp"
                     android:background="@android:color/white" />
 
-                <ImageView
-                    android:id="@+id/imageView11"
+                <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/ic_bnv_menu_home" />
+                    android:text="인증"/>
             </LinearLayout>
-
         </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:visibility="invisible">
-
-        <ImageView
-            android:id="@+id/imageView8"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_bnv_menu_notification" />
     </LinearLayout>
 </FrameLayout>
