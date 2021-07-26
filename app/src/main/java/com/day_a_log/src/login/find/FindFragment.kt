@@ -13,6 +13,29 @@ class FindFragment : BaseFragment<FragmentFindBinding>(FragmentFindBinding::bind
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        var page = 0
+
+        binding.ivPage.setOnClickListener {
+            if (page == 0) {
+                binding.ivPage.setImageResource(R.drawable.ic_find_page_2)
+                binding.linearBg.setBackgroundResource(R.drawable.bg_fragment_find_page_2)
+                binding.tvHint.text = "문자로 찾기"
+                binding.etvSend.hint = "Phone number"
+                binding.linearKey.visibility = View.INVISIBLE
+                binding.btnSend.visibility = View.VISIBLE
+                page = 1
+            }
+            else {
+                binding.ivPage.setImageResource(R.drawable.ic_find_page_1)
+                binding.linearBg.setBackgroundResource(R.drawable.bg_fragment_find_page_1)
+                binding.tvHint.text = "이메일로 찾기"
+                binding.etvSend.hint = "Email"
+                binding.linearKey.visibility = View.INVISIBLE
+                binding.btnSend.visibility = View.VISIBLE
+                page = 0
+            }
+        }
+
         binding.ivExit.setOnClickListener {
             (activity as LoginActivity).replaceFragment(LoginFragment())
         }
