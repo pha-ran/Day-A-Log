@@ -7,7 +7,6 @@
     android:orientation="vertical"
     tools:context=".src.login.login.LoginFragment">
 
-    <!--ToDo-->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,7 +17,6 @@
         android:textColor="#3d3d3d"
         android:lineSpacingExtra="8sp" />
 
-    <!--ToDo-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -95,14 +93,13 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btn_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="로그인"
         android:fontFamily="sans-serif-light" />
-
-    <!--ToDo-->
+    
     <TextView
         android:id="@+id/tv_find"
         android:layout_width="match_parent"

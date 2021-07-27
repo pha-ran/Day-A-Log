@@ -12,12 +12,13 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="android:actionButtonStyle">@style/myActionButtonStyle</item>
+        <item name="actionButtonStyle">@style/myActionButtonStyle</item>
     </style>
 
     <!-- Title style -->
     <style name="ToolbarTitleText">
-                                            <!-- ToDo -->
-        <item name="android:fontFamily">sans-serif-smallcaps</item>
+        <item name="android:fontFamily">@font/magneto_bold_a</item>
         <item name="android:textSize">25sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">#4c4c4c</item>
@@ -47,6 +48,13 @@
     <style name="TextInputLayout_pw_outlinedBox_dense_h" parent="@style/Widget.MaterialComponents.TextInputEditText.OutlinedBox.Dense">
         <item name="android:paddingTop">0dp</item>
         <item name="android:paddingBottom">0dp</item>
+    </style>
+
+    <!-- Toolbar Icon style -->
+    <style name="myActionButtonStyle" parent="Widget.AppCompat.ActionButton">
+        <item name="android:minWidth">36dp</item>
+        <item name="android:maxWidth">48dp</item>
+        <item name="android:width">36dp</item>
     </style>
 
 </resources>

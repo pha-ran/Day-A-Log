@@ -1,5 +1,6 @@
 package com.day_a_log.src.login.login
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import com.day_a_log.R
@@ -20,6 +21,10 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::b
 
         binding.tvFind.setOnClickListener {
             (activity as LoginActivity).replaceFragment(FindFragment())
+        }
+
+        binding.btnLogin.setOnClickListener {
+            (activity as LoginActivity).login()
         }
     }
 }

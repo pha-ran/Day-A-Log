@@ -21,6 +21,6 @@
         app:showAsAction="always"
         android:enabled="true"
         android:title="profile"
-        android:icon="@drawable/ic_launcher_foreground" />
+        android:icon="@drawable/ic_bnv_menu_profile" />
 
 </menu>
