@@ -1,6 +1,5 @@
 package com.day_a_log.src.login.login
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import com.day_a_log.R

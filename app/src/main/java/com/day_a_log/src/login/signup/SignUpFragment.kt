@@ -20,6 +20,8 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding>(FragmentSignUpBinding
         binding.btnSend.setOnClickListener {
             binding.btnSend.visibility = View.GONE
             binding.linearCode.visibility = View.VISIBLE
+            binding.etName.isEnabled = false
+            binding.etPhoneNumber.isEnabled = false
         }
 
         binding.btnCode.setOnClickListener {

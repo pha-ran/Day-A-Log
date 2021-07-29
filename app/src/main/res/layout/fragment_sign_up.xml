@@ -38,6 +38,7 @@
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:text="로그인하기"
+            android:textStyle="bold"
             android:textColor="#007aff"/>
 
     </LinearLayout>
@@ -49,10 +50,10 @@
         android:background="@drawable/bg_fragment_login_edittext" >
 
         <EditText
-            android:id="@+id/editTextTextPersonName4"
+            android:id="@+id/et_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
+            android:layout_margin="12dp"
             android:ems="10"
             android:inputType="textPersonName"
             android:background="@android:color/transparent"
@@ -64,10 +65,10 @@
             android:src="@drawable/bg_fragment_login_edittext_line"/>
 
         <EditText
-            android:id="@+id/editTextTextPersonName6"
+            android:id="@+id/et_phone_number"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
+            android:layout_margin="12dp"
             android:ems="10"
             android:inputType="textPersonName"
             android:background="@android:color/transparent"
@@ -110,7 +111,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:padding="8dp"
+                        android:padding="12dp"
                         android:ems="10"
                         android:inputType="textPersonName"
                         android:background="@drawable/bg_fragment_login_edittext"
