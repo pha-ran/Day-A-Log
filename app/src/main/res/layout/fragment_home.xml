@@ -24,4 +24,11 @@
         app:title="Day A Logue"
         app:titleTextAppearance="@style/ToolbarTitleText"/>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@id/toolbar"/>
+
 </RelativeLayout>
