@@ -22,7 +22,7 @@
             android:layout_width="78dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="48dp"
-            app:srcCompat="@drawable/ic_item_routine_arrow_1" />
+            app:srcCompat="@drawable/ic_item_routine_first_2_arrow_1" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -112,6 +112,6 @@
             android:layout_width="66dp"
             android:layout_height="188dp"
             android:layout_marginTop="48dp"
-            app:srcCompat="@drawable/ic_item_routine_arrow_2" />
+            app:srcCompat="@drawable/ic_item_routine_first_2_arrow_2" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
