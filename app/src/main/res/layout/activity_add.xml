@@ -8,13 +8,13 @@
     tools:context=".src.add.AddActivity"
     android:gravity="bottom"
     app:umanoDragView="@id/slide"
-    app:umanoPanelHeight="240dp">
+    app:umanoPanelHeight="180dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".src.add.AddActivity"
-        android:background="@color/gray">
+        android:background="#fafafa">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
@@ -40,7 +40,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="300dp"
                 android:orientation="vertical"
                 android:layout_marginTop="32dp"
                 android:background="@color/white">
@@ -54,39 +54,55 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginHorizontal="8dp">
+                    android:layout_marginTop="8dp"
+                    android:layout_marginHorizontal="8dp"
+                    android:layout_marginBottom="16dp">
 
                     <TextView
                         android:id="@+id/textView9"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="1" />
+                        android:layout_marginHorizontal="4dp"
+                        android:text="1"
+                        android:textStyle="bold"
+                        android:textSize="15sp"/>
 
                     <EditText
                         android:id="@+id/editTextTextPersonName"
-                        android:layout_width="wrap_content"
+                        android:layout_width="72dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="8dp"
                         android:inputType="textPersonName"
-                        android:layout_weight="1"
-                        android:hint="장소" />
+                        android:background="@android:color/transparent"
+                        android:hint="장소"
+                        android:textSize="15sp"/>
 
                     <EditText
                         android:id="@+id/editTextTextPersonName2"
-                        android:layout_width="wrap_content"
+                        android:layout_width="136dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="3"
-                        android:inputType="textPersonName"
-                        android:hint="활동" />
+                        android:layout_weight="1"
+                        android:layout_marginHorizontal="8dp"
+                        android:inputType="text|textMultiLine"
+                        android:maxLines="2"
+                        android:maxLength="50"
+                        android:scrollHorizontally="false"
+                        android:background="@android:color/transparent"
+                        android:hint="활동"
+                        android:textSize="12sp"/>
 
                     <EditText
                         android:id="@+id/editTextTextPersonName3"
-                        android:layout_width="wrap_content"
+                        android:layout_width="48dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:inputType="textPersonName"
-                        android:hint="시간" />
+                        android:layout_marginHorizontal="8dp"
+                        android:inputType="time"
+                        android:background="@android:color/transparent"
+                        android:hint="시간"
+                        android:textSize="15sp"
+                        android:maxLength="5"/>
 
                     <ImageView
                         android:id="@+id/imageView12"
@@ -106,16 +122,19 @@
                 android:layout_gravity="center_horizontal"
                 android:gravity="center">
 
-                <TextView
+                <EditText
                     android:id="@+id/textView8"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:layout_marginHorizontal="4dp"
+                    android:layout_marginHorizontal="8dp"
                     android:gravity="center_horizontal"
-                    android:text="Title"
+                    android:background="@android:color/transparent"
+                    android:hint="Title"
+                    android:inputType="text"
                     android:textSize="20sp"
-                    android:textColor="#4c4c4c"/>
+                    android:textColor="#4c4c4c"
+                    android:maxLength="15"/>
 
                 <ImageView
                     android:id="@+id/imageView11"
@@ -133,6 +152,32 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imageView13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_activity_add_slide"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="60dp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </com.sothree.slidinguppanel.SlidingUpPanelLayout>
