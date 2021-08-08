@@ -7,12 +7,21 @@ import com.day_a_log.config.BaseFragment
 import com.day_a_log.databinding.FragmentLoginBinding
 import com.day_a_log.src.login.LoginActivity
 import com.day_a_log.src.login.find.FindFragment
+import com.day_a_log.src.login.login.models.LoginRequest
+import com.day_a_log.src.login.login.models.LoginResponse
 import com.day_a_log.src.login.signup.SignUpFragment
 
-class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::bind, R.layout.fragment_login) {
+class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::bind, R.layout.fragment_login), LoginView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        showLoadingDialog(requireContext())
+        val loginRequest = LoginRequest(
+            email = "engus0927@gmail.com",
+            pwd = "qqqq1111"
+        )
+        LoginService(this).tryPostLogin(loginRequest)
 
         binding.tvSignUp.setOnClickListener {
             (activity as LoginActivity).replaceFragment(SignUpFragment())
@@ -25,5 +34,14 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::b
         binding.btnLogin.setOnClickListener {
             (activity as LoginActivity).login()
         }
+    }
+
+    override fun onPostLoginSuccess(response: LoginResponse) {
+        dismissLoadingDialog()
+    }
+
+    override fun onPostLoginFailure(message: String) {
+        dismissLoadingDialog()
+        showCustomToast("fail")
     }
 }
