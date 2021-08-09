@@ -2,6 +2,7 @@ package com.day_a_log.config
 
 import android.app.Application
 import android.content.SharedPreferences
+import androidx.appcompat.app.AppCompatDelegate
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -11,6 +12,9 @@ import java.util.concurrent.TimeUnit
 // 앱이 실행될때 1번만 실행
 class ApplicationClass : Application() {
     val API_URL = "https://dev.gigl.house/"
+
+    //테스트서버 = dev.merily.shop
+    //실서버 = prod.merily.shop
 
     // 코틀린의 전역변수 문법
     companion object {
@@ -27,6 +31,8 @@ class ApplicationClass : Application() {
     // 앱이 처음 생성되는 순간, SP를 새로 만들어주고, 레트로핏 인스턴스를 생성
     override fun onCreate() {
         super.onCreate()
+        // 다크 모드 비활성화
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         sSharedPreferences =
             applicationContext.getSharedPreferences("TEMPLATE_APP", MODE_PRIVATE)
         // 레트로핏 인스턴스 생성

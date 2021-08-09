@@ -38,10 +38,11 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::b
 
     override fun onPostLoginSuccess(response: LoginResponse) {
         dismissLoadingDialog()
+        showCustomToast(response.message)
     }
 
     override fun onPostLoginFailure(message: String) {
         dismissLoadingDialog()
-        showCustomToast("fail")
+        showCustomToast(message)
     }
 }
