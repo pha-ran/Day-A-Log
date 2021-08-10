@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit
 
 // 앱이 실행될때 1번만 실행
 class ApplicationClass : Application() {
-    val API_URL = "https://dev.gigl.house/"
+    val API_URL = "https://dev.merily.shop/"
 
     //테스트서버 = dev.merily.shop
     //실서버 = prod.merily.shop

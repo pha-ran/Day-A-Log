@@ -11,17 +11,18 @@ import com.day_a_log.src.login.login.models.LoginRequest
 import com.day_a_log.src.login.login.models.LoginResponse
 import com.day_a_log.src.login.signup.SignUpFragment
 
-class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::bind, R.layout.fragment_login), LoginView {
+class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::bind, R.layout.fragment_login),
+    LoginView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        showLoadingDialog(requireContext())
-        val loginRequest = LoginRequest(
-            email = "engus0927@gmail.com",
-            pwd = "qqqq1111"
-        )
-        LoginService(this).tryPostLogin(loginRequest)
+//        showLoadingDialog(requireContext())
+//        val loginRequest = LoginRequest(
+//            email = "engus0927@gmail.com",
+//            pwd = "qqqq1111"
+//        )
+//        LoginService(this).tryPostLogin(loginRequest)
 
         binding.tvSignUp.setOnClickListener {
             (activity as LoginActivity).replaceFragment(SignUpFragment())
