@@ -9,9 +9,11 @@ import com.day_a_log.src.login.LoginActivity
 import com.day_a_log.src.login.login.LoginFragment
 import com.day_a_log.src.login.signup.models.DuplicatedIdResponse
 import com.day_a_log.src.login.signup.models.DuplicatedPhoneResponse
+import com.day_a_log.src.login.signup.models.SignUpRequest
+import com.day_a_log.src.login.signup.models.SignUpResponse
 
 class SignUpFragment : BaseFragment<FragmentSignUpBinding>(FragmentSignUpBinding::bind, R.layout.fragment_sign_up),
-    DuplicatedPhoneView, DuplicatedIdView {
+    DuplicatedPhoneView, DuplicatedIdView, SignUpView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -56,9 +58,29 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding>(FragmentSignUpBinding
     override fun onGetDuplicatedIdSuccess(response: DuplicatedIdResponse) {
         dismissLoadingDialog()
         showCustomToast("${response.code}, ${response.message}")
+
+        if (response.code == 1000) {
+            showLoadingDialog(requireContext())
+            SignUpService(this).tryPostSignUp(SignUpRequest(
+                name = binding.etName.text.toString(),
+                phone = binding.etPhoneNumber.text.toString(),
+                userId = binding.etId.text.toString(),
+                userPw = binding.etPassword.text.toString()
+            ))
+        }
     }
 
     override fun onGetDuplicatedIdFailure(message: String) {
+        dismissLoadingDialog()
+        showCustomToast(message)
+    }
+
+    override fun onPostSignUpSuccess(response: SignUpResponse) {
+        dismissLoadingDialog()
+        showCustomToast("${response.code}, ${response.message}")
+    }
+
+    override fun onPostSignUpFailure(message: String) {
         dismissLoadingDialog()
         showCustomToast(message)
     }
