@@ -17,13 +17,6 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::b
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        showLoadingDialog(requireContext())
-//        val loginRequest = LoginRequest(
-//            email = "engus0927@gmail.com",
-//            pwd = "qqqq1111"
-//        )
-//        LoginService(this).tryPostLogin(loginRequest)
-
         binding.tvSignUp.setOnClickListener {
             (activity as LoginActivity).replaceFragment(SignUpFragment())
         }
@@ -33,13 +26,21 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::b
         }
 
         binding.btnLogin.setOnClickListener {
-            (activity as LoginActivity).login()
+            showLoadingDialog(requireContext())
+            LoginService(this).tryPostLogin(LoginRequest(
+                userId = binding.etId.text.toString(),
+                userPw = binding.etPassword.text.toString()
+            ))
         }
     }
 
     override fun onPostLoginSuccess(response: LoginResponse) {
         dismissLoadingDialog()
         showCustomToast(response.message)
+
+        if (response.code == 1000) {
+            (activity as LoginActivity).login()
+        }
     }
 
     override fun onPostLoginFailure(message: String) {
