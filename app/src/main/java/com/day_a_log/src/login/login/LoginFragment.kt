@@ -3,6 +3,8 @@ package com.day_a_log.src.login.login
 import android.os.Bundle
 import android.view.View
 import com.day_a_log.R
+import com.day_a_log.config.ApplicationClass.Companion.X_ACCESS_TOKEN
+import com.day_a_log.config.ApplicationClass.Companion.sSharedPreferences
 import com.day_a_log.config.BaseFragment
 import com.day_a_log.databinding.FragmentLoginBinding
 import com.day_a_log.src.login.LoginActivity
@@ -39,6 +41,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::b
         showCustomToast(response.message)
 
         if (response.code == 1000) {
+            sSharedPreferences.edit().putString(X_ACCESS_TOKEN, response.result.jwt).apply()
             (activity as LoginActivity).login()
         }
     }

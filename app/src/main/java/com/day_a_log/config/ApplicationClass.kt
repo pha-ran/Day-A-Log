@@ -22,7 +22,7 @@ class ApplicationClass : Application() {
         lateinit var sSharedPreferences: SharedPreferences
 
         // JWT Token Header 키 값
-        val X_ACCESS_TOKEN = "X-ACCESS-TOKEN"
+        const val X_ACCESS_TOKEN = "X-ACCESS-TOKEN"
 
         // Retrofit 인스턴스, 앱 실행시 한번만 생성하여 사용
         lateinit var sRetrofit: Retrofit
@@ -34,7 +34,7 @@ class ApplicationClass : Application() {
         // 다크 모드 비활성화
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         sSharedPreferences =
-            applicationContext.getSharedPreferences("TEMPLATE_APP", MODE_PRIVATE)
+            applicationContext.getSharedPreferences("sp_day_a_log", MODE_PRIVATE)
         // 레트로핏 인스턴스 생성
         initRetrofitInstance()
     }
