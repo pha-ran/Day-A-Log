@@ -3,6 +3,8 @@ package com.day_a_log.config
 import android.app.Application
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatDelegate
+import com.google.gson.GsonBuilder
+import com.kakao.sdk.common.KakaoSdk
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -26,6 +28,9 @@ class ApplicationClass : Application() {
 
         // Retrofit 인스턴스, 앱 실행시 한번만 생성하여 사용
         lateinit var sRetrofit: Retrofit
+
+        // 카카오 Retrofit 인스턴스, 앱 실행시 한번만 생성하여 사용
+        lateinit var kRetrofit: Retrofit
     }
 
     // 앱이 처음 생성되는 순간, SP를 새로 만들어주고, 레트로핏 인스턴스를 생성
@@ -37,6 +42,9 @@ class ApplicationClass : Application() {
             applicationContext.getSharedPreferences("sp_day_a_log", MODE_PRIVATE)
         // 레트로핏 인스턴스 생성
         initRetrofitInstance()
+        // Kakao SDK 초기화
+        // println("키해시 ::::: ${Utility.getKeyHash(this)}")
+        KakaoSdk.init(this, "aa394f2da5f7de2a99fc7962add801aa")
     }
 
     // 레트로핏 인스턴스를 생성하고, 레트로핏에 각종 설정값들을 지정
@@ -56,6 +64,20 @@ class ApplicationClass : Application() {
             .baseUrl(API_URL)
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())
+            .build()
+
+        kRetrofit = Retrofit.Builder()
+            .baseUrl("https://kauth.kakao.com/")
+            .client(OkHttpClient.Builder()
+                .readTimeout(5000, TimeUnit.MILLISECONDS)
+                .connectTimeout(5000, TimeUnit.MILLISECONDS)
+                // 로그캣에 okhttp.OkHttpClient로 검색하면 http 통신 내용을 보여줌
+                .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+                .build())
+            .addConverterFactory(GsonConverterFactory.create(
+                GsonBuilder()
+                .setLenient()
+                .create()))
             .build()
     }
 }
