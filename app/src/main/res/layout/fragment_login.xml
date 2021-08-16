@@ -63,7 +63,7 @@
                 android:layout_gravity="center_horizontal"
                 android:ems="10"
                 android:inputType="textWebEmailAddress"
-                android:hint="Id / Email / Phone number"
+                android:hint="Id / Email"
                 android:fontFamily="sans-serif-light"
                 android:background="@android:color/transparent" />
         </com.google.android.material.textfield.TextInputLayout>

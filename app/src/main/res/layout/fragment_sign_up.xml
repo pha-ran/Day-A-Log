@@ -72,7 +72,7 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:background="@android:color/transparent"
-            android:hint="전화번호" />
+            android:hint="이메일" />
     </LinearLayout>
 
     <FrameLayout

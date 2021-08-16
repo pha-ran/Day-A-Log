@@ -13,41 +13,14 @@ class FindFragment : BaseFragment<FragmentFindBinding>(FragmentFindBinding::bind
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        var page = 0
-
-        binding.ivPage.setOnClickListener {
-            if (page == 0) {
-                binding.ivPage.setImageResource(R.drawable.ic_find_page_2)
-                binding.linearBg.setBackgroundResource(R.drawable.bg_fragment_find_page_2)
-                binding.tvHint.text = "문자로 찾기"
-                binding.etSend.hint = "Phone number"
-                binding.etSend.text = null
-                binding.etSend.isEnabled = true
-                binding.linearKey.visibility = View.INVISIBLE
-                binding.btnSend.visibility = View.VISIBLE
-                page = 1
-            }
-            else {
-                binding.ivPage.setImageResource(R.drawable.ic_find_page_1)
-                binding.linearBg.setBackgroundResource(R.drawable.bg_fragment_find_page_1)
-                binding.tvHint.text = "이메일로 찾기"
-                binding.etSend.hint = "Email"
-                binding.etSend.text = null
-                binding.etSend.isEnabled = true
-                binding.linearKey.visibility = View.INVISIBLE
-                binding.btnSend.visibility = View.VISIBLE
-                page = 0
-            }
-        }
-
         binding.ivExit.setOnClickListener {
             (activity as LoginActivity).replaceFragment(LoginFragment())
         }
 
         binding.btnSend.setOnClickListener {
-            binding.linearKey.visibility = View.VISIBLE
+            binding.linearCode.visibility = View.VISIBLE
             binding.btnSend.visibility = View.GONE
-            binding.etSend.isEnabled = false
+            binding.etEmail.isEnabled = false
         }
     }
 }
