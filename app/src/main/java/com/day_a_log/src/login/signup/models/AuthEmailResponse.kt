@@ -1,8 +1,8 @@
 package com.day_a_log.src.login.signup.models
 
-data class PhoneResponse(
+data class AuthEmailResponse(
     val code: Int,
     val isSuccess: Boolean,
     val message: String,
-    val result: PhoneResult
+    val result: AuthEmailResult
 )

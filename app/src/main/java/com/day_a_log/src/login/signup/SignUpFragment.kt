@@ -7,13 +7,10 @@ import com.day_a_log.config.BaseFragment
 import com.day_a_log.databinding.FragmentSignUpBinding
 import com.day_a_log.src.login.LoginActivity
 import com.day_a_log.src.login.login.LoginFragment
-import com.day_a_log.src.login.signup.models.DuplicatedIdResponse
-import com.day_a_log.src.login.signup.models.DuplicatedPhoneResponse
-import com.day_a_log.src.login.signup.models.SignUpRequest
-import com.day_a_log.src.login.signup.models.SignUpResponse
+import com.day_a_log.src.login.signup.models.*
 
 class SignUpFragment : BaseFragment<FragmentSignUpBinding>(FragmentSignUpBinding::bind, R.layout.fragment_sign_up),
-    DuplicatedPhoneView, DuplicatedIdView, SignUpView {
+    DuplicatedPhoneView, DuplicatedIdView, AuthEmailView, SignUpView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -81,6 +78,16 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding>(FragmentSignUpBinding
     }
 
     override fun onPostSignUpFailure(message: String) {
+        dismissLoadingDialog()
+        showCustomToast(message)
+    }
+
+    override fun onPostAuthEmailSuccess(response: AuthEmailResponse) {
+        dismissLoadingDialog()
+        showCustomToast(response.message)
+    }
+
+    override fun onPostAuthEmailFailure(message: String) {
         dismissLoadingDialog()
         showCustomToast(message)
     }
