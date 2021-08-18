@@ -10,7 +10,7 @@ import com.day_a_log.src.login.login.LoginFragment
 import com.day_a_log.src.login.signup.models.*
 
 class SignUpFragment : BaseFragment<FragmentSignUpBinding>(FragmentSignUpBinding::bind, R.layout.fragment_sign_up),
-    DuplicatedPhoneView, DuplicatedIdView, AuthEmailView, SignUpView {
+    DuplicatedEmailView, DuplicatedIdView, AuthEmailView, SignUpView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -21,7 +21,7 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding>(FragmentSignUpBinding
 
         binding.btnSend.setOnClickListener {
             showLoadingDialog(requireContext())
-            DuplicatedPhoneService(this).tryGetDuplicatedPhone(phone = binding.etPhoneNumber.text.toString())
+            DuplicatedEmailService(this).tryGetDuplicatedEmail(email = binding.etEmail.text.toString())
         }
 
         binding.btnCode.setOnClickListener {
@@ -35,7 +35,7 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding>(FragmentSignUpBinding
         }
     }
 
-    override fun onGetDuplicatedPhoneSuccess(response: DuplicatedPhoneResponse) {
+    override fun onGetDuplicatedEmailSuccess(response: DuplicatedEmailResponse) {
         dismissLoadingDialog()
         showCustomToast(response.message)
 
@@ -43,11 +43,14 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding>(FragmentSignUpBinding
             binding.btnSend.visibility = View.GONE
             binding.linearCode.visibility = View.VISIBLE
             binding.etName.isEnabled = false
-            binding.etPhoneNumber.isEnabled = false
+            binding.etEmail.isEnabled = false
+
+            //인증코드 전송
+            //AuthEmailService(this).tryPostAuthEmail(email = binding.etEmail.text.toString())
         }
     }
 
-    override fun onGetDuplicatedPhoneFailure(message: String) {
+    override fun onGetDuplicatedEmailFailure(message: String) {
         dismissLoadingDialog()
         showCustomToast(message)
     }
@@ -60,7 +63,7 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding>(FragmentSignUpBinding
             showLoadingDialog(requireContext())
             SignUpService(this).tryPostSignUp(SignUpRequest(
                 name = binding.etName.text.toString(),
-                phone = binding.etPhoneNumber.text.toString(),
+                email = binding.etEmail.text.toString(),
                 userId = binding.etId.text.toString(),
                 userPw = binding.etPassword.text.toString()
             ))

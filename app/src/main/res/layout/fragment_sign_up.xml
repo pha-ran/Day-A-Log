@@ -65,7 +65,7 @@
             android:src="@drawable/bg_fragment_login_edittext_line"/>
 
         <EditText
-            android:id="@+id/et_phone_number"
+            android:id="@+id/et_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="12dp"
