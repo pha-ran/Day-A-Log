@@ -46,7 +46,7 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding>(FragmentSignUpBinding
             binding.etEmail.isEnabled = false
 
             //인증코드 전송
-            //AuthEmailService(this).tryPostAuthEmail(email = binding.etEmail.text.toString())
+            AuthEmailService(this).tryPostAuthEmail(email = binding.etEmail.text.toString())
         }
     }
 
