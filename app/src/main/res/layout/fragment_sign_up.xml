@@ -107,13 +107,13 @@
                     android:visibility="invisible">
 
                     <EditText
-                        android:id="@+id/editTextTextPersonName7"
+                        android:id="@+id/et_code"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:padding="12dp"
                         android:ems="10"
-                        android:inputType="textPersonName"
+                        android:inputType="number"
                         android:background="@drawable/bg_fragment_login_edittext"
                         android:hint="code" />
 

@@ -3,6 +3,7 @@ package com.day_a_log.src.login.signup
 import android.os.Bundle
 import android.view.View
 import com.day_a_log.R
+import com.day_a_log.config.ApplicationClass.Companion.sSharedPreferences
 import com.day_a_log.config.BaseFragment
 import com.day_a_log.databinding.FragmentSignUpBinding
 import com.day_a_log.src.login.LoginActivity
@@ -25,14 +26,24 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding>(FragmentSignUpBinding
         }
 
         binding.btnCode.setOnClickListener {
-            binding.linearKey.visibility = View.GONE
-            binding.linearIdPassword.visibility = View.VISIBLE
+            if (binding.etCode.text.toString() == sSharedPreferences.getString("Auth_Number", null)) {
+                binding.linearKey.visibility = View.GONE
+                binding.linearIdPassword.visibility = View.VISIBLE
+            }
+            else {
+                showCustomToast("인증번호가 틀립니다.")
+            }
         }
 
         binding.btnAdd.setOnClickListener {
             showLoadingDialog(requireContext())
             DuplicatedIdService(this).tryGetDuplicatedId(id = binding.etId.text.toString())
         }
+    }
+
+    override fun onDestroyView() {
+        sSharedPreferences.edit().putString("Auth_Number", null).apply()
+        super.onDestroyView()
     }
 
     override fun onGetDuplicatedEmailSuccess(response: DuplicatedEmailResponse) {
@@ -87,7 +98,8 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding>(FragmentSignUpBinding
 
     override fun onPostAuthEmailSuccess(response: AuthEmailResponse) {
         dismissLoadingDialog()
-        showCustomToast(response.message)
+
+        sSharedPreferences.edit().putString("Auth_Number", response.result.toString()).apply()
     }
 
     override fun onPostAuthEmailFailure(message: String) {

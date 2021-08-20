@@ -6,6 +6,6 @@ import retrofit2.http.*
 
 interface AuthEmailInterface {
     @POST("auth/email")
-    fun authEmail(@Body email : String)
+    fun authEmail(@Query("email") email : String)
     : Call<AuthEmailResponse>
 }

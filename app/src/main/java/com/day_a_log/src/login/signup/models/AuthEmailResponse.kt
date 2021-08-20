@@ -4,5 +4,5 @@ data class AuthEmailResponse(
     val code: Int,
     val isSuccess: Boolean,
     val message: String,
-    val result: AuthEmailResult
+    val result: Int
 )
