@@ -50,6 +50,8 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::b
                     showCustomToast("로그인 성공")
                     println("로그인 성공 ${token.accessToken}, ${token.refreshToken}")
 
+                    (activity as LoginActivity).login()
+
                     UserApiClient.instance.me { user, error ->
                         if (error != null) {
                             println("사용자 정보 요청 실패 $error")
