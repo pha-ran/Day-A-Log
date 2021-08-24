@@ -46,6 +46,7 @@
                 android:background="@color/white">
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_add"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="60dp"
@@ -62,17 +63,19 @@
 
                     <TextView
                         android:id="@+id/textView9"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:layout_marginHorizontal="4dp"
                         android:text="1"
                         android:textStyle="bold"
                         android:textSize="15sp"/>
 
                     <EditText
-                        android:id="@+id/editTextTextPersonName"
-                        android:layout_width="72dp"
+                        android:id="@+id/et_loc"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="4"
                         android:layout_marginHorizontal="8dp"
                         android:inputType="textPersonName"
                         android:background="@android:color/transparent"
@@ -80,10 +83,10 @@
                         android:textSize="15sp"/>
 
                     <EditText
-                        android:id="@+id/editTextTextPersonName2"
-                        android:layout_width="136dp"
+                        android:id="@+id/et_act"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight="11"
                         android:layout_marginHorizontal="8dp"
                         android:inputType="text|textMultiLine"
                         android:maxLines="2"
@@ -94,9 +97,10 @@
                         android:textSize="15sp"/>
 
                     <EditText
-                        android:id="@+id/editTextTextPersonName3"
-                        android:layout_width="48dp"
+                        android:id="@+id/et_time"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="4"
                         android:layout_marginHorizontal="8dp"
                         android:inputType="time"
                         android:background="@android:color/transparent"
@@ -105,10 +109,11 @@
                         android:maxLength="5"/>
 
                     <ImageView
-                        android:id="@+id/imageView12"
+                        android:id="@+id/iv_add"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
+                        android:layout_marginHorizontal="8dp"
                         app:srcCompat="@drawable/ic_activity_add_next" />
                 </LinearLayout>
 

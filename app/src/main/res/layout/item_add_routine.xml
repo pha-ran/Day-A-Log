@@ -3,61 +3,76 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:layout_marginTop="8dp"
-    android:layout_marginHorizontal="8dp"
-    android:layout_marginBottom="16dp"
-    android:gravity="center_vertical">
+    android:layout_marginBottom="16dp">
 
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="4dp"
-        android:text="1"
-        android:textStyle="bold"
-        android:textSize="15sp"
-        android:textColor="@color/black"/>
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
 
-    <TextView
-        android:id="@+id/editTextTextPersonName"
-        android:layout_width="72dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="8dp"
-        android:background="@android:color/transparent"
-        android:text="장소"
-        android:textSize="15sp"
-        android:textColor="@color/black"/>
+        <TextView
+            android:id="@+id/tv_num"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="4dp"
+            android:text="1"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:textColor="@color/black"/>
 
-    <TextView
-        android:id="@+id/editTextTextPersonName2"
-        android:layout_height="wrap_content"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_marginHorizontal="8dp"
-        android:maxLines="2"
-        android:maxLength="50"
-        android:scrollHorizontally="false"
-        android:background="@android:color/transparent"
-        android:text="활동"
-        android:textSize="15sp"
-        android:textColor="@color/black"/>
+        <TextView
+            android:id="@+id/tv_loc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:layout_marginHorizontal="8dp"
+            android:background="@android:color/transparent"
+            android:text="장소"
+            android:textSize="15sp"
+            android:textColor="@color/black"/>
 
-    <TextView
-        android:id="@+id/editTextTextPersonName3"
-        android:layout_width="48dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="8dp"
-        android:background="@android:color/transparent"
-        android:text="시간"
-        android:textSize="15sp"
-        android:maxLength="5"
-        android:textColor="@color/black"/>
+        <TextView
+            android:id="@+id/tv_act"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="11"
+            android:layout_marginHorizontal="8dp"
+            android:maxLines="2"
+            android:maxLength="50"
+            android:scrollHorizontally="false"
+            android:background="@android:color/transparent"
+            android:text="활동"
+            android:textSize="15sp"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:layout_marginHorizontal="8dp"
+            android:background="@android:color/transparent"
+            android:text="시간"
+            android:textSize="15sp"
+            android:maxLength="5"
+            android:textColor="@color/black"/>
+
+        <ImageView
+            android:id="@+id/iv_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            app:srcCompat="@drawable/ic_exit_button" />
+
+    </LinearLayout>
 
     <ImageView
-        android:id="@+id/iv_delete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        app:srcCompat="@drawable/ic_exit_button" />
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="4dp"
+        app:srcCompat="@drawable/bg_item_add_routine_line" />
 </LinearLayout>
