@@ -21,15 +21,23 @@ class AddActivity : BaseActivity<ActivityAddBinding>(ActivityAddBinding::inflate
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_activity_add_back)
 
-        addRoutineItemList.add(AddRoutineItem(
-            "1",
-            "adfadf",
-            "afafadfa",
-            "1231"
-        ))
-
+        val adaptor = AddRoutineAdaptor(addRoutineItemList)
         binding.rvAdd.layoutManager = LinearLayoutManager(this)
-        binding.rvAdd.adapter = AddRoutineAdaptor(addRoutineItemList)
+        binding.rvAdd.adapter = adaptor
+
+        binding.ivAdd.setOnClickListener {
+            addRoutineItemList.add(AddRoutineItem(
+                (addRoutineItemList.size+1).toString(),
+                binding.etLoc.text.toString(),
+                binding.etAct.text.toString(),
+                binding.etTime.text.toString()
+            ))
+            adaptor.notifyDataSetChanged()
+            binding.tvNum.text = (addRoutineItemList.size+1).toString()
+            binding.etLoc.text = null
+            binding.etAct.text = null
+            binding.etTime.text = null
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

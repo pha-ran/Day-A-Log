@@ -62,7 +62,7 @@
                     android:layout_marginBottom="16dp">
 
                     <TextView
-                        android:id="@+id/textView9"
+                        android:id="@+id/tv_num"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
