@@ -7,20 +7,20 @@
         app:showAsAction="always"
         android:enabled="true"
         android:title="home"
-        android:icon="@drawable/ic_bnv_menu_home" />
+        android:icon="@drawable/ic_bnv_menu_home_selector" />
 
     <item
         android:id="@+id/bottom_navigation_item_notification"
         app:showAsAction="always"
         android:enabled="true"
         android:title="notification"
-        android:icon="@drawable/ic_bnv_menu_notification" />
+        android:icon="@drawable/ic_bnv_menu_notification_selector" />
 
     <item
         android:id="@+id/bottom_navigation_item_profile"
         app:showAsAction="always"
         android:enabled="true"
         android:title="profile"
-        android:icon="@drawable/ic_bnv_menu_profile" />
+        android:icon="@drawable/ic_bnv_menu_profile_selector" />
 
 </menu>

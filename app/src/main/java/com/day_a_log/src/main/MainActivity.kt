@@ -12,6 +12,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        binding.bnvMain.itemIconTintList = null
         replaceFragment(HomeFragment())
     }
 

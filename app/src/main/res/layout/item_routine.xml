@@ -17,7 +17,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_bnv_menu_profile" />
+            app:srcCompat="@drawable/ic_bnv_menu_profile_x" />
 
         <TextView
             android:id="@+id/tv_id"
