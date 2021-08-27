@@ -3,16 +3,15 @@ package com.day_a_log.src.add
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.day_a_log.R
 import com.day_a_log.config.BaseActivity
 import com.day_a_log.databinding.ActivityAddBinding
-import com.day_a_log.src.add.routine.AddRoutineAdaptor
+import com.day_a_log.src.add.routine.AddRoutineFragment
 import com.day_a_log.src.add.routine.models.AddRoutineItem
 
 class AddActivity : BaseActivity<ActivityAddBinding>(ActivityAddBinding::inflate) {
 
-    private val addRoutineItemList = ArrayList<AddRoutineItem>()
+    internal val addRoutineItemList = ArrayList<AddRoutineItem>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,23 +20,7 @@ class AddActivity : BaseActivity<ActivityAddBinding>(ActivityAddBinding::inflate
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_activity_add_back)
 
-        val adaptor = AddRoutineAdaptor(addRoutineItemList)
-        binding.rvAdd.layoutManager = LinearLayoutManager(this)
-        binding.rvAdd.adapter = adaptor
-
-        binding.ivAdd.setOnClickListener {
-            addRoutineItemList.add(AddRoutineItem(
-                (addRoutineItemList.size+1).toString(),
-                binding.etLoc.text.toString(),
-                binding.etAct.text.toString(),
-                binding.etTime.text.toString()
-            ))
-            adaptor.notifyDataSetChanged()
-            binding.tvNum.text = (addRoutineItemList.size+1).toString()
-            binding.etLoc.text = null
-            binding.etAct.text = null
-            binding.etTime.text = null
-        }
+        supportFragmentManager.beginTransaction().replace(R.id.frameLayout, AddRoutineFragment()).commitAllowingStateLoss()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
