@@ -6,6 +6,7 @@ import android.view.MenuItem
 import com.day_a_log.R
 import com.day_a_log.config.BaseActivity
 import com.day_a_log.databinding.ActivityAddBinding
+import com.day_a_log.src.add.log.AddLogFragment
 import com.day_a_log.src.add.routine.AddRoutineFragment
 import com.day_a_log.src.add.routine.models.AddRoutineItem
 
@@ -20,7 +21,7 @@ class AddActivity : BaseActivity<ActivityAddBinding>(ActivityAddBinding::inflate
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_activity_add_back)
 
-        supportFragmentManager.beginTransaction().replace(R.id.frameLayout, AddRoutineFragment()).commitAllowingStateLoss()
+        supportFragmentManager.beginTransaction().replace(R.id.frameLayout, AddLogFragment()).commitAllowingStateLoss()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
