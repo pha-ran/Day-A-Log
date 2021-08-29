@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_gravity="center_horizontal"
+    android:layout_marginHorizontal="8dp">
+
+    <LinearLayout
+        android:id="@+id/linear_add"
+        android:layout_width="256dp"
+        android:layout_height="36dp"
+        android:orientation="horizontal"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:background="@drawable/bg_item_add_log">
+
+        <TextView
+            android:id="@+id/tv_num"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="4dp"
+            android:layout_weight="1"
+            android:text="1"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_loc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:layout_weight="4"
+            android:background="@android:color/transparent"
+            android:text="장소"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/tv_act"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:layout_weight="11"
+            android:background="@android:color/transparent"
+            android:text="활동"
+            android:maxLength="50"
+            android:maxLines="2"
+            android:scrollHorizontally="false"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:layout_weight="4"
+            android:background="@android:color/transparent"
+            android:text="시간"
+            android:maxLength="5"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/editTextTextPersonName"
+        android:layout_width="296dp"
+        android:layout_height="256dp"
+        android:layout_marginTop="36dp"
+        android:gravity="top"
+        android:padding="8dp"
+        android:background="@drawable/bg_item_add_log"
+        android:ems="10"
+        android:inputType="text"
+        android:hint="log" />
+</LinearLayout>
