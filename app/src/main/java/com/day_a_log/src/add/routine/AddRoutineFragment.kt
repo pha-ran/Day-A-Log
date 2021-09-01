@@ -43,5 +43,12 @@ class AddRoutineFragment : BaseFragment<FragmentAddRoutineBinding>(FragmentAddRo
 
             //삭제시 ArrayList.indexOf()로 인덱스값 얻기
         }
+
+        adaptor.setItemClickListener(object : AddRoutineAdaptor.OnItemClickListener{
+            override fun onItemClick(view: View, position: Int) {
+                val item = (activity as AddActivity).addRoutineItemList[position]
+                showCustomToast("x버튼 클릭, ${item.loc}")
+            }
+        })
     }
 }

@@ -1,12 +1,24 @@
 package com.day_a_log.src.add.routine
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.day_a_log.databinding.ItemAddRoutineBinding
 import com.day_a_log.src.add.routine.models.AddRoutineItem
 
 class AddRoutineAdaptor(private val addRoutineItemList : ArrayList<AddRoutineItem>) : RecyclerView.Adapter<AddRoutineAdaptor.AddRoutineViewHolder>() {
+
+    interface OnItemClickListener {
+        fun onItemClick(view: View, position: Int)
+    }
+
+    lateinit var onItemClickListener : OnItemClickListener
+
+    fun setItemClickListener(itemClickListener : OnItemClickListener) {
+        this.onItemClickListener = itemClickListener
+    }
 
     inner class AddRoutineViewHolder(private val binding: ItemAddRoutineBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(data:AddRoutineItem) {
@@ -14,6 +26,9 @@ class AddRoutineAdaptor(private val addRoutineItemList : ArrayList<AddRoutineIte
             binding.tvLoc.text = data.loc
             binding.tvAct.text = data.act
             binding.tvTime.text = data.time
+        }
+        fun bindingIvDelete(): ImageView {
+            return binding.ivDelete
         }
     }
 
@@ -25,6 +40,10 @@ class AddRoutineAdaptor(private val addRoutineItemList : ArrayList<AddRoutineIte
 
     override fun onBindViewHolder(holder: AddRoutineViewHolder, position: Int) {
         holder.bind(addRoutineItemList[position])
+
+        holder.bindingIvDelete().setOnClickListener {
+            onItemClickListener.onItemClick(it, position)
+        }
     }
 
     override fun getItemCount(): Int {

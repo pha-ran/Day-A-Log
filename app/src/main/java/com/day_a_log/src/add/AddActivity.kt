@@ -21,7 +21,7 @@ class AddActivity : BaseActivity<ActivityAddBinding>(ActivityAddBinding::inflate
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_activity_add_back)
 
-        supportFragmentManager.beginTransaction().replace(R.id.frameLayout, AddLogFragment()).commitAllowingStateLoss()
+        supportFragmentManager.beginTransaction().replace(R.id.frameLayout, AddRoutineFragment()).commitAllowingStateLoss()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
