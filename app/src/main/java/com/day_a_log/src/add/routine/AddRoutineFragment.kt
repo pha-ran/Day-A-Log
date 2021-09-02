@@ -48,6 +48,13 @@ class AddRoutineFragment : BaseFragment<FragmentAddRoutineBinding>(FragmentAddRo
             override fun onItemClick(view: View, position: Int) {
                 val item = (activity as AddActivity).addRoutineItemList[position]
                 showCustomToast("x버튼 클릭, ${item.loc}")
+                (activity as AddActivity).addRoutineItemList.removeAt(position)
+                val s = (activity as AddActivity).addRoutineItemList.size
+                for(i in 1..s) {
+                    (activity as AddActivity).addRoutineItemList[i-1].num = i.toString()
+                }
+                adaptor.notifyDataSetChanged()
+                binding.tvNum.text = ((activity as AddActivity).addRoutineItemList.size + 1).toString()
             }
         })
     }
