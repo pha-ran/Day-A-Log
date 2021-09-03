@@ -13,6 +13,7 @@ import com.day_a_log.src.add.routine.models.AddRoutineItem
 class AddActivity : BaseActivity<ActivityAddBinding>(ActivityAddBinding::inflate) {
 
     internal val addRoutineItemList = ArrayList<AddRoutineItem>()
+    private var page = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,7 +22,20 @@ class AddActivity : BaseActivity<ActivityAddBinding>(ActivityAddBinding::inflate
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_activity_add_back)
 
-        supportFragmentManager.beginTransaction().replace(R.id.frameLayout, AddRoutineFragment()).commitAllowingStateLoss()
+        replaceFragment(0)
+    }
+
+    private fun replaceFragment(p : Int) {
+        if (p == 0) {
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.frameLayout, AddRoutineFragment()).commitAllowingStateLoss()
+            page = 0
+        }
+        else {
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.frameLayout, AddLogFragment()).commitAllowingStateLoss()
+            page = 1
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -32,10 +46,20 @@ class AddActivity : BaseActivity<ActivityAddBinding>(ActivityAddBinding::inflate
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {
-                finish()
+                if (page == 0) {
+                    finish()
+                }
+                else {
+                    replaceFragment(0)
+                }
             }
             R.id.tb_add_next -> {
-                showCustomToast("next")
+                if (page == 0) {
+                    replaceFragment(1)
+                }
+                else {
+                    showCustomToast("업로드")
+                }
             }
         }
 
