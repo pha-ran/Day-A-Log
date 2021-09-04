@@ -18,6 +18,8 @@ class AddRoutineFragment : BaseFragment<FragmentAddRoutineBinding>(FragmentAddRo
         binding.rvAdd.layoutManager = LinearLayoutManager(requireContext())
         binding.rvAdd.adapter = adaptor
 
+        binding.etTitle.setText((activity as AddActivity).title)
+
         binding.ivAdd.setOnClickListener {
             if ((activity as AddActivity).addRoutineItemList.size < 5) {
                 (activity as AddActivity).addRoutineItemList.add(
@@ -57,5 +59,10 @@ class AddRoutineFragment : BaseFragment<FragmentAddRoutineBinding>(FragmentAddRo
                 binding.tvNum.text = ((activity as AddActivity).addRoutineItemList.size + 1).toString()
             }
         })
+    }
+
+    override fun onDestroyView() {
+        (activity as AddActivity).title = binding.etTitle.text?.toString()
+        super.onDestroyView()
     }
 }

@@ -13,6 +13,7 @@ import com.day_a_log.src.add.routine.models.AddRoutineItem
 class AddActivity : BaseActivity<ActivityAddBinding>(ActivityAddBinding::inflate) {
 
     internal val addRoutineItemList = ArrayList<AddRoutineItem>()
+    internal var title : String? = null
     private var page = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
