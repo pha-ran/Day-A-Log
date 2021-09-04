@@ -47,22 +47,26 @@ class AddActivity : BaseActivity<ActivityAddBinding>(ActivityAddBinding::inflate
         when (item.itemId) {
             android.R.id.home -> {
                 if (page == 0) {
+                    showCustomToast("종료")
                     finish()
                 }
                 else {
+                    setSupportActionBar(binding.toolbar)
                     replaceFragment(0)
+                    showCustomToast("$page")
                 }
             }
             R.id.tb_add_next -> {
                 if (page == 0) {
+                    item.setIcon(R.drawable.ic_activity_add_upload)
                     replaceFragment(1)
+                    showCustomToast("$page")
                 }
                 else {
-                    showCustomToast("업로드")
+                    showCustomToast("$page, 업로드")
                 }
             }
         }
-
         return super.onOptionsItemSelected(item)
     }
 }
