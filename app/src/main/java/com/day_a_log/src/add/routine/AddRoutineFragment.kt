@@ -19,12 +19,13 @@ class AddRoutineFragment : BaseFragment<FragmentAddRoutineBinding>(FragmentAddRo
         binding.rvAdd.adapter = adaptor
 
         binding.etTitle.setText((activity as AddActivity).title)
+        changeIndex()
+        changeSize()
 
         binding.ivAdd.setOnClickListener {
             if ((activity as AddActivity).addRoutineItemList.size < 5) {
                 (activity as AddActivity).addRoutineItemList.add(
                     AddRoutineItem(
-                        //아이템이 추가되기 전이라 +1
                         ((activity as AddActivity).addRoutineItemList.size + 1).toString(),
                         binding.etLoc.text.toString(),
                         binding.etAct.text.toString(),
@@ -33,17 +34,12 @@ class AddRoutineFragment : BaseFragment<FragmentAddRoutineBinding>(FragmentAddRo
                 )
 
                 adaptor.notifyDataSetChanged()
-                binding.tvNum.text = ((activity as AddActivity).addRoutineItemList.size + 1).toString()
                 binding.etLoc.text = null
                 binding.etAct.text = null
                 binding.etTime.text = null
+                changeIndex()
+                changeSize()
             }
-
-            if ((activity as AddActivity).addRoutineItemList.size >= 5) {
-                binding.linearAdd.visibility = View.GONE
-            }
-
-            //삭제시 ArrayList.indexOf()로 인덱스값 얻기
         }
 
         adaptor.setItemClickListener(object : AddRoutineAdaptor.OnItemClickListener{
@@ -51,12 +47,9 @@ class AddRoutineFragment : BaseFragment<FragmentAddRoutineBinding>(FragmentAddRo
                 val item = (activity as AddActivity).addRoutineItemList[position]
                 showCustomToast("x버튼 클릭, ${item.loc}")
                 (activity as AddActivity).addRoutineItemList.removeAt(position)
-                val s = (activity as AddActivity).addRoutineItemList.size
-                for(i in 1..s) {
-                    (activity as AddActivity).addRoutineItemList[i-1].num = i.toString()
-                }
+                changeIndex()
+                changeSize()
                 adaptor.notifyDataSetChanged()
-                binding.tvNum.text = ((activity as AddActivity).addRoutineItemList.size + 1).toString()
             }
         })
     }
@@ -64,5 +57,22 @@ class AddRoutineFragment : BaseFragment<FragmentAddRoutineBinding>(FragmentAddRo
     override fun onDestroyView() {
         (activity as AddActivity).title = binding.etTitle.text?.toString()
         super.onDestroyView()
+    }
+
+    fun changeIndex() {
+        val s = (activity as AddActivity).addRoutineItemList.size
+        for(i in 1..s) {
+            (activity as AddActivity).addRoutineItemList[i-1].num = i.toString()
+        }
+        binding.tvNum.text = ((activity as AddActivity).addRoutineItemList.size + 1).toString()
+    }
+
+    fun changeSize() {
+        if ((activity as AddActivity).addRoutineItemList.size >= 5) {
+            binding.linearAdd.visibility = View.GONE
+        }
+        else {
+            binding.linearAdd.visibility = View.VISIBLE
+        }
     }
 }
