@@ -1,7 +1,7 @@
 package com.day_a_log.src.add.log.models
 
 data class AddLogItem(
-    var num: String,
+    val num: String,
     val loc: String,
     val act: String,
     val time: String,
