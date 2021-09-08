@@ -31,8 +31,11 @@
             android:layout_marginHorizontal="8dp"
             android:background="@android:color/transparent"
             android:text="장소"
+            android:maxLines="2"
+            android:maxLength="20"
             android:textSize="15sp"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black"
+            android:ellipsize="end" />
 
         <TextView
             android:id="@+id/tv_act"
@@ -46,7 +49,8 @@
             android:background="@android:color/transparent"
             android:text="활동"
             android:textSize="15sp"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black"
+            android:ellipsize="end" />
 
         <TextView
             android:id="@+id/tv_time"

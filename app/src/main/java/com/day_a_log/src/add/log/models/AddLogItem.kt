@@ -5,5 +5,5 @@ data class AddLogItem(
     val loc: String,
     val act: String,
     val time: String,
-    val log: String
+    val log: String?
 )

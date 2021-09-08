@@ -33,7 +33,8 @@
             android:layout_weight="4"
             android:background="@android:color/transparent"
             android:text="장소"
-            android:textSize="15sp" />
+            android:textSize="15sp"
+            android:ellipsize="end" />
 
         <TextView
             android:id="@+id/tv_act"
@@ -46,7 +47,8 @@
             android:maxLength="50"
             android:maxLines="2"
             android:scrollHorizontally="false"
-            android:textSize="15sp" />
+            android:textSize="15sp"
+            android:ellipsize="end" />
 
         <TextView
             android:id="@+id/tv_time"

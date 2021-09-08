@@ -7,12 +7,14 @@ import com.day_a_log.R
 import com.day_a_log.config.BaseActivity
 import com.day_a_log.databinding.ActivityAddBinding
 import com.day_a_log.src.add.log.AddLogFragment
+import com.day_a_log.src.add.log.models.AddLogItem
 import com.day_a_log.src.add.routine.AddRoutineFragment
 import com.day_a_log.src.add.routine.models.AddRoutineItem
 
 class AddActivity : BaseActivity<ActivityAddBinding>(ActivityAddBinding::inflate) {
 
     internal val addRoutineItemList = ArrayList<AddRoutineItem>()
+    internal val addLogItemList = ArrayList<AddLogItem>()
     internal var title : String? = null
     private var page = 0
 
