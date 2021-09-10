@@ -24,6 +24,11 @@ class AddLogFragment : BaseFragment<FragmentAddLogBinding>(FragmentAddLogBinding
         binding.rvAddLog.layoutManager = layoutManager
         binding.rvAddLog.adapter = adaptor
         PagerSnapHelper().attachToRecyclerView(binding.rvAddLog)
+
+        binding.button.setOnClickListener {
+            (activity as AddActivity).openGallery()
+            binding.ivImg.setImageBitmap((activity as AddActivity).currentBitmap)
+        }
     }
 
     override fun onDestroyView() {

@@ -1,6 +1,14 @@
 package com.day_a_log.src.add
 
+import android.content.Intent
+import android.content.res.Resources
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
+import android.util.Base64
+import android.util.Base64.NO_WRAP
 import android.view.Menu
 import android.view.MenuItem
 import com.day_a_log.R
@@ -10,6 +18,8 @@ import com.day_a_log.src.add.log.AddLogFragment
 import com.day_a_log.src.add.log.models.AddLogItem
 import com.day_a_log.src.add.routine.AddRoutineFragment
 import com.day_a_log.src.add.routine.models.AddRoutineItem
+import java.io.ByteArrayOutputStream
+import java.io.InputStream
 
 class AddActivity : BaseActivity<ActivityAddBinding>(ActivityAddBinding::inflate) {
 
@@ -17,9 +27,16 @@ class AddActivity : BaseActivity<ActivityAddBinding>(ActivityAddBinding::inflate
     internal val addLogItemList = ArrayList<AddLogItem>()
     internal var title : String? = null
     private var page = 0
+    internal var currentImageURL : Uri? = null
+    internal var currentBitmap : Bitmap? = null
+    internal var profileImageBase64 : String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        currentImageURL = null
+        currentBitmap = null
+        profileImageBase64 = null
 
         setSupportActionBar(binding.toolbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
@@ -71,5 +88,42 @@ class AddActivity : BaseActivity<ActivityAddBinding>(ActivityAddBinding::inflate
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    internal fun openGallery() {
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = MediaStore.Images.Media.CONTENT_TYPE
+        startActivityForResult(intent, 200) //FLAG_REQ_STORAGE
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == 200 && resultCode == RESULT_OK){
+            currentImageURL = data?.data
+            println("URI : $currentImageURL")
+            currentBitmap = MediaStore.Images.Media.getBitmap(contentResolver, currentImageURL)
+            println("BITMAP : $currentBitmap")
+
+            // Base64 인코딩부분
+            val ins: InputStream? = currentImageURL?.let {
+                applicationContext.contentResolver.openInputStream(
+                    it
+                )
+            }
+            val img: Bitmap = BitmapFactory.decodeStream(ins)
+            ins?.close()
+            val resized = Bitmap.createScaledBitmap(img, 256, 256, true)
+            val byteArrayOutputStream = ByteArrayOutputStream()
+            resized.compress(Bitmap.CompressFormat.JPEG, 60, byteArrayOutputStream)
+            val byteArray: ByteArray = byteArrayOutputStream.toByteArray()
+            val outStream = ByteArrayOutputStream()
+            val res: Resources = resources
+            profileImageBase64 = Base64.encodeToString(byteArray, NO_WRAP)
+            // 여기까지 인코딩 끝
+            println("인코딩 후 : $profileImageBase64")
+        } else{
+            println("ActivityResult, something wrong")
+        }
     }
 }
