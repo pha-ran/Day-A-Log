@@ -5,6 +5,7 @@ import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Base64
@@ -105,6 +106,9 @@ class AddActivity : BaseActivity<ActivityAddBinding>(ActivityAddBinding::inflate
             currentBitmap = MediaStore.Images.Media.getBitmap(contentResolver, currentImageURL)
             println("BITMAP : $currentBitmap")
 
+            println("이미지 경로 : "+currentImageURL+"\n"+getRealPathFromURI(currentImageURL!!))
+
+            /*
             // Base64 인코딩부분
             val ins: InputStream? = currentImageURL?.let {
                 applicationContext.contentResolver.openInputStream(
@@ -122,8 +126,20 @@ class AddActivity : BaseActivity<ActivityAddBinding>(ActivityAddBinding::inflate
             profileImageBase64 = Base64.encodeToString(byteArray, NO_WRAP)
             // 여기까지 인코딩 끝
             println("인코딩 후 : $profileImageBase64")
+             */
         } else{
             println("ActivityResult, something wrong")
         }
+    }
+
+    private fun getRealPathFromURI(uri: Uri): String {
+        var buildName = Build.MANUFACTURER
+        var columnIndex = 0
+        var proj = arrayOf(MediaStore.Images.Media.DATA)
+        var cursor = contentResolver.query(uri, proj, null, null, null)
+        if (cursor!!.moveToFirst()) {
+            columnIndex = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
+        }
+        return cursor.getString(columnIndex)
     }
 }
