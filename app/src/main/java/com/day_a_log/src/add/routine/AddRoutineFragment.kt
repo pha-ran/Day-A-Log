@@ -8,8 +8,10 @@ import com.day_a_log.config.BaseFragment
 import com.day_a_log.databinding.FragmentAddRoutineBinding
 import com.day_a_log.src.add.AddActivity
 import com.day_a_log.src.add.routine.models.AddRoutineItem
+import com.day_a_log.src.add.routine.models.AddRoutineResponse
 
-class AddRoutineFragment : BaseFragment<FragmentAddRoutineBinding>(FragmentAddRoutineBinding::bind, R.layout.fragment_add_routine) {
+class AddRoutineFragment : BaseFragment<FragmentAddRoutineBinding>(FragmentAddRoutineBinding::bind, R.layout.fragment_add_routine),
+    AddRoutineView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -74,5 +76,13 @@ class AddRoutineFragment : BaseFragment<FragmentAddRoutineBinding>(FragmentAddRo
         else {
             binding.linearAdd.visibility = View.VISIBLE
         }
+    }
+
+    override fun onPostAddRoutineSuccess(response: AddRoutineResponse) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onPostAddRoutineFailure(message: String) {
+        TODO("Not yet implemented")
     }
 }

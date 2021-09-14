@@ -1,6 +1,6 @@
-package com.day_a_log.src.add.models
+package com.day_a_log.src.add.routine.models
 
-data class RoutineRequest(
+data class AddRoutineRequest(
     val authorIdx: Int,
     val type: String,
     val title: String,
