@@ -17,12 +17,13 @@ import com.day_a_log.config.BaseActivity
 import com.day_a_log.databinding.ActivityAddBinding
 import com.day_a_log.src.add.log.AddLogFragment
 import com.day_a_log.src.add.log.models.AddLogItem
+import com.day_a_log.src.add.models.AddRoutineResponse
 import com.day_a_log.src.add.routine.AddRoutineFragment
 import com.day_a_log.src.add.routine.models.AddRoutineItem
 import java.io.ByteArrayOutputStream
 import java.io.InputStream
 
-class AddActivity : BaseActivity<ActivityAddBinding>(ActivityAddBinding::inflate) {
+class AddActivity : BaseActivity<ActivityAddBinding>(ActivityAddBinding::inflate), AddRoutineView {
 
     internal val addRoutineItemList = ArrayList<AddRoutineItem>()
     internal val addLogItemList = ArrayList<AddLogItem>()
@@ -141,5 +142,13 @@ class AddActivity : BaseActivity<ActivityAddBinding>(ActivityAddBinding::inflate
             columnIndex = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
         }
         return cursor.getString(columnIndex)
+    }
+
+    override fun onPostAddRoutineSuccess(response: AddRoutineResponse) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onPostAddRoutineFailure(message: String) {
+        TODO("Not yet implemented")
     }
 }

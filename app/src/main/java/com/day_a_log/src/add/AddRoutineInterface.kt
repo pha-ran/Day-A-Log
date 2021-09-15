@@ -1,7 +1,7 @@
-package com.day_a_log.src.add.routine
+package com.day_a_log.src.add
 
-import com.day_a_log.src.add.routine.models.AddRoutineRequest
-import com.day_a_log.src.add.routine.models.AddRoutineResponse
+import com.day_a_log.src.add.models.AddRoutineRequest
+import com.day_a_log.src.add.models.AddRoutineResponse
 import retrofit2.Call
 import retrofit2.http.*
 
