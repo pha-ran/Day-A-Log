@@ -71,6 +71,8 @@
         android:padding="8dp"
         android:background="@drawable/bg_item_add_log"
         android:ems="10"
-        android:inputType="text"
-        android:hint="log" />
+        android:inputType="textMultiLine"
+        android:hint="log"
+        android:singleLine="false"
+        android:scrollHorizontally="false"/>
 </LinearLayout>

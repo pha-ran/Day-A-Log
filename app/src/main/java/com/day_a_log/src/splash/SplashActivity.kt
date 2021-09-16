@@ -26,7 +26,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
         showCustomToast(response.message)
 
         if (response.code == 1001) {
-            showCustomToast(response.result.userIdx.toString())
+            showCustomToast("유저 id : "+response.result.userIdx.toString())
             Handler(Looper.getMainLooper()).postDelayed({
                 startActivity(Intent(this, MainActivity::class.java))
                 finish()

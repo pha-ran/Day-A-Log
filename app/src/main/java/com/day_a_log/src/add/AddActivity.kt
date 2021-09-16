@@ -17,7 +17,9 @@ import com.day_a_log.config.BaseActivity
 import com.day_a_log.databinding.ActivityAddBinding
 import com.day_a_log.src.add.log.AddLogFragment
 import com.day_a_log.src.add.log.models.AddLogItem
+import com.day_a_log.src.add.models.AddRoutineRequest
 import com.day_a_log.src.add.models.AddRoutineResponse
+import com.day_a_log.src.add.models.LogData
 import com.day_a_log.src.add.routine.AddRoutineFragment
 import com.day_a_log.src.add.routine.models.AddRoutineItem
 import java.io.ByteArrayOutputStream
@@ -32,6 +34,7 @@ class AddActivity : BaseActivity<ActivityAddBinding>(ActivityAddBinding::inflate
     internal var currentImageURL : Uri? = null
     internal var currentBitmap : Bitmap? = null
     internal var profileImageBase64 : String? = null
+    private val addRoutineRequest = ArrayList<LogData>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -85,7 +88,23 @@ class AddActivity : BaseActivity<ActivityAddBinding>(ActivityAddBinding::inflate
                     showCustomToast("$page")
                 }
                 else {
-                    showCustomToast("$page, 업로드")
+                    showLoadingDialog(this)
+                    showCustomToast("$page, 업로드"+
+                        4+
+                        "T"+
+                        title!!+
+                        "#ffffff"+
+                        "contents"
+                    )
+                    AddRoutineService(this).tryPostAddRoutine(AddRoutineRequest(
+                        4,
+                        "T",
+                        title!!,
+                        "#ffffff",
+                        "contents",
+                        ""
+                        //ToDo
+                    ))
                 }
             }
         }
@@ -145,10 +164,12 @@ class AddActivity : BaseActivity<ActivityAddBinding>(ActivityAddBinding::inflate
     }
 
     override fun onPostAddRoutineSuccess(response: AddRoutineResponse) {
-        TODO("Not yet implemented")
+        dismissLoadingDialog()
+        showCustomToast(response.message)
     }
 
     override fun onPostAddRoutineFailure(message: String) {
-        TODO("Not yet implemented")
+        dismissLoadingDialog()
+        showCustomToast(message)
     }
 }

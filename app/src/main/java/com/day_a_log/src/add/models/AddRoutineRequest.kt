@@ -6,5 +6,5 @@ data class AddRoutineRequest(
     val title: String,
     val bgColor: String,
     val contents: String,
-    val logArray: ArrayList<LogData>
+    val logArray: String
 )

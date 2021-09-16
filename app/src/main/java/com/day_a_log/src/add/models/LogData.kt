@@ -7,5 +7,5 @@ data class LogData(
     val contents: String,
     val imgUrl: String,
     val type: String,
-    val packageIdx: Int
+    val packageIdx: Int?
 )
