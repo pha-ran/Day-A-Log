@@ -34,7 +34,6 @@ class AddActivity : BaseActivity<ActivityAddBinding>(ActivityAddBinding::inflate
     internal var currentImageURL : Uri? = null
     internal var currentBitmap : Bitmap? = null
     internal var profileImageBase64 : String? = null
-    private val addRoutineRequest = ArrayList<LogData>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -88,6 +87,29 @@ class AddActivity : BaseActivity<ActivityAddBinding>(ActivityAddBinding::inflate
                     showCustomToast("$page")
                 }
                 else {
+                    val logArray = mutableListOf<LogData>()
+
+                    logArray.add(
+                        LogData(
+                        "0",
+                        "ssd",
+                        "sd",
+                        "sd",
+                        "",
+                        "T",
+                        0
+                    )
+                    )
+                    logArray.add(LogData(
+                        "0",
+                        "sd",
+                        "sdsd",
+                        "sd",
+                        "",
+                        "T",
+                        0
+                    ))
+
                     showLoadingDialog(this)
                     showCustomToast("$page, 업로드"+
                         4+
@@ -102,8 +124,7 @@ class AddActivity : BaseActivity<ActivityAddBinding>(ActivityAddBinding::inflate
                         title!!,
                         "#ffffff",
                         "contents",
-                        ""
-                        //ToDo
+                        logArray
                     ))
                 }
             }
