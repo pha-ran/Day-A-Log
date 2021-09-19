@@ -1,15 +1,11 @@
 package com.day_a_log.src.add
 
 import android.content.Intent
-import android.content.res.Resources
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Base64
-import android.util.Base64.NO_WRAP
 import android.view.Menu
 import android.view.MenuItem
 import com.day_a_log.R
@@ -22,8 +18,6 @@ import com.day_a_log.src.add.models.AddRoutineResponse
 import com.day_a_log.src.add.models.LogData
 import com.day_a_log.src.add.routine.AddRoutineFragment
 import com.day_a_log.src.add.routine.models.AddRoutineItem
-import java.io.ByteArrayOutputStream
-import java.io.InputStream
 
 class AddActivity : BaseActivity<ActivityAddBinding>(ActivityAddBinding::inflate), AddRoutineView {
 
@@ -87,28 +81,21 @@ class AddActivity : BaseActivity<ActivityAddBinding>(ActivityAddBinding::inflate
                     showCustomToast("$page")
                 }
                 else {
+                    //ToDo - AddLogFragment 에서 타이틀 가져오기, 예외처리
                     val logArray = mutableListOf<LogData>()
-
-                    logArray.add(
-                        LogData(
-                        "0",
-                        "ssd",
-                        "sd",
-                        "sd",
-                        "",
-                        "T",
-                        0
-                    )
-                    )
-                    logArray.add(LogData(
-                        "0",
-                        "sd",
-                        "sdsd",
-                        "sd",
-                        "",
-                        "T",
-                        0
-                    ))
+                    val s = addLogItemList
+                    for(i in 1..s.size) {
+                        logArray.add(
+                            LogData(
+                                s[i-1].time,
+                                s[i-1].loc,
+                                s[i-1].act,
+                                s[i-1].log,
+                                "",
+                                "T",
+                                0
+                            ))
+                    }
 
                     showLoadingDialog(this)
                     showCustomToast("$page, 업로드"+
@@ -187,6 +174,7 @@ class AddActivity : BaseActivity<ActivityAddBinding>(ActivityAddBinding::inflate
     override fun onPostAddRoutineSuccess(response: AddRoutineResponse) {
         dismissLoadingDialog()
         showCustomToast(response.message)
+        //ToDo - AddActivity 종료조건
     }
 
     override fun onPostAddRoutineFailure(message: String) {
