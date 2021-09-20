@@ -49,4 +49,8 @@ class AddLogFragment : BaseFragment<FragmentAddLogBinding>(FragmentAddLogBinding
             ))
         }
     }
+
+    fun getTitle(): String {
+        return binding.etTitle.text.toString()
+    }
 }

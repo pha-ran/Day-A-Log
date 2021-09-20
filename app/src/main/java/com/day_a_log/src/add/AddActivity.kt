@@ -25,9 +25,9 @@ class AddActivity : BaseActivity<ActivityAddBinding>(ActivityAddBinding::inflate
     internal val addLogItemList = ArrayList<AddLogItem>()
     internal var title : String? = null
     private var page = 0
-    internal var currentImageURL : Uri? = null
+    private var currentImageURL : Uri? = null
     internal var currentBitmap : Bitmap? = null
-    internal var profileImageBase64 : String? = null
+    private var profileImageBase64 : String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -81,7 +81,7 @@ class AddActivity : BaseActivity<ActivityAddBinding>(ActivityAddBinding::inflate
                     showCustomToast("$page")
                 }
                 else {
-                    //ToDo - AddLogFragment 에서 타이틀 가져오기, 예외처리
+                    title = (supportFragmentManager.findFragmentById(R.id.frameLayout) as AddLogFragment).getTitle()
                     val logArray = mutableListOf<LogData>()
                     val s = addLogItemList
                     for(i in 1..s.size) {
@@ -174,7 +174,9 @@ class AddActivity : BaseActivity<ActivityAddBinding>(ActivityAddBinding::inflate
     override fun onPostAddRoutineSuccess(response: AddRoutineResponse) {
         dismissLoadingDialog()
         showCustomToast(response.message)
-        //ToDo - AddActivity 종료조건
+        if (response.code == 1000) {
+            finish()
+        }
     }
 
     override fun onPostAddRoutineFailure(message: String) {
