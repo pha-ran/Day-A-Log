@@ -2,8 +2,8 @@ package com.day_a_log.src.add
 
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.Menu
@@ -18,8 +18,8 @@ import com.day_a_log.src.add.models.AddRoutineResponse
 import com.day_a_log.src.add.models.LogData
 import com.day_a_log.src.add.routine.AddRoutineFragment
 import com.day_a_log.src.add.routine.models.AddRoutineItem
-import com.google.firebase.storage.FirebaseStorage
-import java.io.File
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 
 class AddActivity : BaseActivity<ActivityAddBinding>(ActivityAddBinding::inflate), AddRoutineView {
 
@@ -29,14 +29,12 @@ class AddActivity : BaseActivity<ActivityAddBinding>(ActivityAddBinding::inflate
     private var page = 0
     private var currentImageURL : Uri? = null
     internal var currentBitmap : Bitmap? = null
-    private var profileImageBase64 : String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         currentImageURL = null
         currentBitmap = null
-        profileImageBase64 = null
 
         setSupportActionBar(binding.toolbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
@@ -123,7 +121,7 @@ class AddActivity : BaseActivity<ActivityAddBinding>(ActivityAddBinding::inflate
 
     internal fun openGallery() {
         val intent = Intent(Intent.ACTION_PICK)
-        intent.type = "image/*"
+        intent.type = MediaStore.Images.Media.CONTENT_TYPE
         startActivityForResult(intent, 200) //FLAG_REQ_STORAGE
     }
 
@@ -133,18 +131,17 @@ class AddActivity : BaseActivity<ActivityAddBinding>(ActivityAddBinding::inflate
         if (requestCode == 200 && resultCode == RESULT_OK){
             currentImageURL = data?.data
             println("URI : $currentImageURL")
-            currentBitmap = MediaStore.Images.Media.getBitmap(contentResolver, currentImageURL)
+            val input = contentResolver.openInputStream(currentImageURL!!)
+            currentBitmap = BitmapFactory.decodeStream(input)
+            input!!.close()
             println("BITMAP : $currentBitmap")
 
-            println("이미지 경로 : "+getRealPathFromURI(currentImageURL!!))
+            //파이어베이스 사진 업로드
+            val storage = Firebase.storage
+            val storageRef = storage.reference
 
-            var storage = FirebaseStorage.getInstance()
-            var storageRef = storage.reference
-            //var spaceRef = storageRef.child(currentImageURL.toString())
-
-            var file = Uri.fromFile(File(getRealPathFromURI(currentImageURL!!)))
-            val riversRef = storageRef.child("images/${file.lastPathSegment}")
-            var uploadTask = riversRef.putFile(file)
+            val imageRef = storageRef.child("test/${currentImageURL!!.lastPathSegment}")
+            val uploadTask = imageRef.putFile(currentImageURL!!)
 
             // Register observers to listen for when the download is done or if it fails
             uploadTask.addOnFailureListener {
@@ -153,23 +150,12 @@ class AddActivity : BaseActivity<ActivityAddBinding>(ActivityAddBinding::inflate
                 println("업로드 실패, $it")
             }.addOnSuccessListener { taskSnapshot ->
                 // taskSnapshot.metadata contains file metadata such as size, content-type, etc.
-                // ...
                 showCustomToast("업로드 성공")
+                println("$taskSnapshot")
             }
         } else{
             println("ActivityResult, something wrong")
         }
-    }
-
-    private fun getRealPathFromURI(uri: Uri): String {
-        var buildName = Build.MANUFACTURER
-        var columnIndex = 0
-        var proj = arrayOf(MediaStore.Images.Media.DATA)
-        var cursor = contentResolver.query(uri, proj, null, null, null)
-        if (cursor!!.moveToFirst()) {
-            columnIndex = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
-        }
-        return cursor.getString(columnIndex)
     }
 
     override fun onPostAddRoutineSuccess(response: AddRoutineResponse) {
