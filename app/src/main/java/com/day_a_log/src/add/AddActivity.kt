@@ -18,6 +18,8 @@ import com.day_a_log.src.add.models.AddRoutineResponse
 import com.day_a_log.src.add.models.LogData
 import com.day_a_log.src.add.routine.AddRoutineFragment
 import com.day_a_log.src.add.routine.models.AddRoutineItem
+import com.google.firebase.storage.FirebaseStorage
+import java.io.File
 
 class AddActivity : BaseActivity<ActivityAddBinding>(ActivityAddBinding::inflate), AddRoutineView {
 
@@ -121,7 +123,7 @@ class AddActivity : BaseActivity<ActivityAddBinding>(ActivityAddBinding::inflate
 
     internal fun openGallery() {
         val intent = Intent(Intent.ACTION_PICK)
-        intent.type = MediaStore.Images.Media.CONTENT_TYPE
+        intent.type = "image/*"
         startActivityForResult(intent, 200) //FLAG_REQ_STORAGE
     }
 
@@ -134,27 +136,26 @@ class AddActivity : BaseActivity<ActivityAddBinding>(ActivityAddBinding::inflate
             currentBitmap = MediaStore.Images.Media.getBitmap(contentResolver, currentImageURL)
             println("BITMAP : $currentBitmap")
 
-            println("이미지 경로 : "+currentImageURL+"\n"+getRealPathFromURI(currentImageURL!!))
+            println("이미지 경로 : "+getRealPathFromURI(currentImageURL!!))
 
-            /*
-            // Base64 인코딩부분
-            val ins: InputStream? = currentImageURL?.let {
-                applicationContext.contentResolver.openInputStream(
-                    it
-                )
+            var storage = FirebaseStorage.getInstance()
+            var storageRef = storage.reference
+            //var spaceRef = storageRef.child(currentImageURL.toString())
+
+            var file = Uri.fromFile(File(getRealPathFromURI(currentImageURL!!)))
+            val riversRef = storageRef.child("images/${file.lastPathSegment}")
+            var uploadTask = riversRef.putFile(file)
+
+            // Register observers to listen for when the download is done or if it fails
+            uploadTask.addOnFailureListener {
+                // Handle unsuccessful uploads
+                showCustomToast("업로드 실패, $it")
+                println("업로드 실패, $it")
+            }.addOnSuccessListener { taskSnapshot ->
+                // taskSnapshot.metadata contains file metadata such as size, content-type, etc.
+                // ...
+                showCustomToast("업로드 성공")
             }
-            val img: Bitmap = BitmapFactory.decodeStream(ins)
-            ins?.close()
-            val resized = Bitmap.createScaledBitmap(img, 256, 256, true)
-            val byteArrayOutputStream = ByteArrayOutputStream()
-            resized.compress(Bitmap.CompressFormat.JPEG, 60, byteArrayOutputStream)
-            val byteArray: ByteArray = byteArrayOutputStream.toByteArray()
-            val outStream = ByteArrayOutputStream()
-            val res: Resources = resources
-            profileImageBase64 = Base64.encodeToString(byteArray, NO_WRAP)
-            // 여기까지 인코딩 끝
-            println("인코딩 후 : $profileImageBase64")
-             */
         } else{
             println("ActivityResult, something wrong")
         }
