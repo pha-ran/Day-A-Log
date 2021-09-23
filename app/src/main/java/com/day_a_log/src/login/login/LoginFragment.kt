@@ -96,6 +96,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::b
         if (response.code == 1000) {
             sSharedPreferences.edit().putString(X_ACCESS_TOKEN, response.result.jwt).apply()
             (activity as LoginActivity).login()
+            //ToDo 일반 로그인시 jwt api 호출 후 useridx 받기
         }
     }
 

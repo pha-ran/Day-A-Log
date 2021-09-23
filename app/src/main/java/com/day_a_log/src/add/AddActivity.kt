@@ -152,6 +152,14 @@ class AddActivity : BaseActivity<ActivityAddBinding>(ActivityAddBinding::inflate
                 // taskSnapshot.metadata contains file metadata such as size, content-type, etc.
                 showCustomToast("업로드 성공")
                 println("$taskSnapshot")
+
+                val st = Firebase.storage
+                val stRef = storage.reference
+                stRef.child("test/698263649").downloadUrl.addOnSuccessListener {
+                    println("다운로드 성공 : $it")
+                }.addOnFailureListener {
+                    println("다운로드 실패")
+                }
             }
         } else{
             println("ActivityResult, something wrong")
