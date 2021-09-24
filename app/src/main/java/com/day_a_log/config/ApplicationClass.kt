@@ -26,6 +26,9 @@ class ApplicationClass : Application() {
         // JWT Token Header 키 값
         const val X_ACCESS_TOKEN = "X-ACCESS-TOKEN"
 
+        // User Idx
+        const val User_Idx = "User-Idx"
+
         // Retrofit 인스턴스, 앱 실행시 한번만 생성하여 사용
         lateinit var sRetrofit: Retrofit
 
@@ -42,6 +45,9 @@ class ApplicationClass : Application() {
             applicationContext.getSharedPreferences("sp_day_a_log", MODE_PRIVATE)
         // 레트로핏 인스턴스 생성
         initRetrofitInstance()
+        // User Idx 초기화
+        sSharedPreferences.edit().putInt(User_Idx, -1).apply()
+        println("유저 아이디 초기화 : "+sSharedPreferences.getInt(User_Idx, -1))
         // Kakao SDK 초기화
         // println("키해시 ::::: ${Utility.getKeyHash(this)}")
         KakaoSdk.init(this, "aa394f2da5f7de2a99fc7962add801aa")

@@ -9,6 +9,7 @@ import android.provider.MediaStore
 import android.view.Menu
 import android.view.MenuItem
 import com.day_a_log.R
+import com.day_a_log.config.ApplicationClass
 import com.day_a_log.config.BaseActivity
 import com.day_a_log.databinding.ActivityAddBinding
 import com.day_a_log.src.add.log.AddLogFragment
@@ -41,6 +42,8 @@ class AddActivity : BaseActivity<ActivityAddBinding>(ActivityAddBinding::inflate
         supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_activity_add_back)
 
         replaceFragment(0)
+
+        println("저장된 유저 아이디 : "+ ApplicationClass.sSharedPreferences.getInt(ApplicationClass.User_Idx, -1))
     }
 
     private fun replaceFragment(p : Int) {
@@ -153,6 +156,7 @@ class AddActivity : BaseActivity<ActivityAddBinding>(ActivityAddBinding::inflate
                 showCustomToast("업로드 성공")
                 println("$taskSnapshot")
 
+                //파이어베이스 사진 다운로드
                 val st = Firebase.storage
                 val stRef = storage.reference
                 stRef.child("test/698263649").downloadUrl.addOnSuccessListener {

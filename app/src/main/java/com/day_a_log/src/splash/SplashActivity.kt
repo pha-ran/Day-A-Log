@@ -4,8 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import com.day_a_log.config.ApplicationClass.Companion.X_ACCESS_TOKEN
-import com.day_a_log.config.ApplicationClass.Companion.sSharedPreferences
+import com.day_a_log.config.ApplicationClass
 import com.day_a_log.config.BaseActivity
 import com.day_a_log.databinding.ActivitySplashBinding
 import com.day_a_log.src.login.LoginActivity
@@ -27,6 +26,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
 
         if (response.code == 1001) {
             showCustomToast("유저 id : "+response.result.userIdx.toString())
+            ApplicationClass.sSharedPreferences.edit().putInt(ApplicationClass.User_Idx, response.result.userIdx).apply()
             Handler(Looper.getMainLooper()).postDelayed({
                 startActivity(Intent(this, MainActivity::class.java))
                 finish()

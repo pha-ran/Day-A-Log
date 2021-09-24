@@ -9,7 +9,6 @@ import com.day_a_log.config.BaseFragment
 import com.day_a_log.databinding.FragmentLoginBinding
 import com.day_a_log.src.login.LoginActivity
 import com.day_a_log.src.login.find.FindFragment
-import com.day_a_log.src.login.login.models.KakaoRequest
 import com.day_a_log.src.login.login.models.KakaoResponse
 import com.day_a_log.src.login.login.models.LoginRequest
 import com.day_a_log.src.login.login.models.LoginResponse
@@ -40,7 +39,6 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::b
         }
 
         binding.ivKakaoLogin.setOnClickListener {
-
             // 로그인 공통 callback 구성
             val callback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
                 if (error != null) {
@@ -49,25 +47,25 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::b
                 else if (token != null) {
                     showCustomToast("로그인 성공")
                     println("로그인 성공 ${token.accessToken}, ${token.refreshToken}")
-
+                    //ToDo LoginService(this).tryPostLogin(LoginRequest(id, pw)) -> 있으면 로그인 없으면 생성
                     (activity as LoginActivity).login()
 
-                    UserApiClient.instance.me { user, error ->
-                        if (error != null) {
-                            println("사용자 정보 요청 실패 $error")
-                        }
-                        else if (user != null) {
-                            println("사용자 정보 요청 성공, 닉네임: ${user.kakaoAccount?.profile?.nickname}")
-                        }
-                    }
-                    UserApiClient.instance.accessTokenInfo { tokenInfo, error ->
-                        if (error != null) {
-                            println("토큰 정보 보기 실패, $error")
-                        }
-                        else if (tokenInfo != null) {
-                            println("토큰 정보 보기 성공, 회원번호: ${tokenInfo.id}, 만료시간: ${tokenInfo.expiresIn} 초")
-                        }
-                    }
+//                    UserApiClient.instance.me { user, error ->
+//                        if (error != null) {
+//                            println("사용자 정보 요청 실패 $error")
+//                        }
+//                        else if (user != null) {
+//                            println("사용자 정보 요청 성공, 닉네임: ${user.kakaoAccount?.profile?.nickname}")
+//                        }
+//                    }
+//                    UserApiClient.instance.accessTokenInfo { tokenInfo, error ->
+//                        if (error != null) {
+//                            println("토큰 정보 보기 실패, $error")
+//                        }
+//                        else if (tokenInfo != null) {
+//                            println("토큰 정보 보기 성공, 회원번호: ${tokenInfo.id}, 만료시간: ${tokenInfo.expiresIn} 초")
+//                        }
+//                    }
                 }
             }
 
@@ -96,7 +94,6 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::b
         if (response.code == 1000) {
             sSharedPreferences.edit().putString(X_ACCESS_TOKEN, response.result.jwt).apply()
             (activity as LoginActivity).login()
-            //ToDo 일반 로그인시 jwt api 호출 후 useridx 받기
         }
     }
 

@@ -7,7 +7,7 @@ import com.day_a_log.R
 import com.day_a_log.config.BaseActivity
 import com.day_a_log.databinding.ActivityLoginBinding
 import com.day_a_log.src.login.login.LoginFragment
-import com.day_a_log.src.main.MainActivity
+import com.day_a_log.src.splash.SplashActivity
 
 class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::inflate) {
 
@@ -22,7 +22,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
     }
 
     fun login() {
-        startActivity(Intent(this, MainActivity::class.java))
+        startActivity(Intent(this, SplashActivity::class.java))
         finish()
     }
 }
