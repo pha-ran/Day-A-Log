@@ -26,6 +26,7 @@ class AddLogFragment : BaseFragment<FragmentAddLogBinding>(FragmentAddLogBinding
         PagerSnapHelper().attachToRecyclerView(binding.rvAddLog)
 
         binding.button.setOnClickListener {
+            // ToDo 버튼 로그별로 최대 5개 나눠서 이미지 선택 시에 갤러리 함수 호출 시 로그 번호 넘겨주기
             (activity as AddActivity).openGallery()
             binding.ivImg.setImageBitmap((activity as AddActivity).currentBitmap)
         }

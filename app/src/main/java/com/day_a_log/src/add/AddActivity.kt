@@ -28,13 +28,13 @@ class AddActivity : BaseActivity<ActivityAddBinding>(ActivityAddBinding::inflate
     internal val addLogItemList = ArrayList<AddLogItem>()
     internal var title : String? = null
     private var page = 0
-    private var currentImageURL : Uri? = null
+    private var currentImageURI : Uri? = null
     internal var currentBitmap : Bitmap? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        currentImageURL = null
+        currentImageURI = null
         currentBitmap = null
 
         setSupportActionBar(binding.toolbar)
@@ -42,8 +42,6 @@ class AddActivity : BaseActivity<ActivityAddBinding>(ActivityAddBinding::inflate
         supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_activity_add_back)
 
         replaceFragment(0)
-
-        println("저장된 유저 아이디 : "+ ApplicationClass.sSharedPreferences.getInt(ApplicationClass.User_Idx, -1))
     }
 
     private fun replaceFragment(p : Int) {
@@ -101,19 +99,12 @@ class AddActivity : BaseActivity<ActivityAddBinding>(ActivityAddBinding::inflate
                     }
 
                     showLoadingDialog(this)
-                    showCustomToast("$page, 업로드"+
-                        4+
-                        "T"+
-                        title!!+
-                        "#ffffff"+
-                        "contents"
-                    )
                     AddRoutineService(this).tryPostAddRoutine(AddRoutineRequest(
-                        4,
+                        ApplicationClass.sSharedPreferences.getInt(ApplicationClass.User_Idx, -1),
                         "T",
                         title!!,
-                        "#ffffff",
-                        "contents",
+                        "EMPTY",
+                        "EMPTY",
                         logArray
                     ))
                 }
@@ -132,39 +123,12 @@ class AddActivity : BaseActivity<ActivityAddBinding>(ActivityAddBinding::inflate
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == 200 && resultCode == RESULT_OK){
-            currentImageURL = data?.data
-            println("URI : $currentImageURL")
-            val input = contentResolver.openInputStream(currentImageURL!!)
-            currentBitmap = BitmapFactory.decodeStream(input)
-            input!!.close()
-            println("BITMAP : $currentBitmap")
+            //ToDo url, bitmap 배열로 만든 후 번호 매칭 (requestCode) 해서 업로드
 
-            //파이어베이스 사진 업로드
-            val storage = Firebase.storage
-            val storageRef = storage.reference
-
-            val imageRef = storageRef.child("test/${currentImageURL!!.lastPathSegment}")
-            val uploadTask = imageRef.putFile(currentImageURL!!)
-
-            // Register observers to listen for when the download is done or if it fails
-            uploadTask.addOnFailureListener {
-                // Handle unsuccessful uploads
-                showCustomToast("업로드 실패, $it")
-                println("업로드 실패, $it")
-            }.addOnSuccessListener { taskSnapshot ->
-                // taskSnapshot.metadata contains file metadata such as size, content-type, etc.
-                showCustomToast("업로드 성공")
-                println("$taskSnapshot")
-
-                //파이어베이스 사진 다운로드
-                val st = Firebase.storage
-                val stRef = storage.reference
-                stRef.child("test/698263649").downloadUrl.addOnSuccessListener {
-                    println("다운로드 성공 : $it")
-                }.addOnFailureListener {
-                    println("다운로드 실패")
-                }
-            }
+            currentImageURI = data?.data
+            println("URI : $currentImageURI")
+            showImage(currentImageURI)
+            uploadImage()
         } else{
             println("ActivityResult, something wrong")
         }
@@ -181,5 +145,46 @@ class AddActivity : BaseActivity<ActivityAddBinding>(ActivityAddBinding::inflate
     override fun onPostAddRoutineFailure(message: String) {
         dismissLoadingDialog()
         showCustomToast(message)
+    }
+
+    private fun showImage(uri : Uri?) {
+        val input = contentResolver.openInputStream(uri!!)
+        currentBitmap = BitmapFactory.decodeStream(input)
+        input!!.close()
+        println("BITMAP : $currentBitmap")
+    }
+
+    private fun uploadImage() {
+        //파이어베이스 사진 업로드
+        val storage = Firebase.storage
+        val storageRef = storage.reference
+
+        val imageRef = storageRef.child("test/${currentImageURI!!.lastPathSegment}")
+        val uploadTask = imageRef.putFile(currentImageURI!!)
+
+        // Register observers to listen for when the download is done or if it fails
+        uploadTask.addOnFailureListener {
+            // Handle unsuccessful uploads
+            showCustomToast("업로드 실패, $it")
+            println("업로드 실패, $it")
+        }.addOnSuccessListener { taskSnapshot ->
+            // taskSnapshot.metadata contains file metadata such as size, content-type, etc.
+            showCustomToast("업로드 성공")
+            println("$taskSnapshot")
+
+            downloadImage()
+        }
+    }
+
+    private fun downloadImage() {
+        //파이어베이스 사진 다운로드
+        val storage = Firebase.storage
+        val storageRef = storage.reference
+
+        storageRef.child("test/698263649").downloadUrl.addOnSuccessListener {
+            println("다운로드 성공 : $it")
+        }.addOnFailureListener {
+            println("다운로드 실패")
+        }
     }
 }
