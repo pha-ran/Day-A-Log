@@ -25,9 +25,12 @@ class AddLogFragment : BaseFragment<FragmentAddLogBinding>(FragmentAddLogBinding
         binding.rvAddLog.adapter = adaptor
         PagerSnapHelper().attachToRecyclerView(binding.rvAddLog)
 
+        setSlidingUpPanel()
+
         binding.button.setOnClickListener {
-            // ToDo 버튼 로그별로 최대 5개 나눠서 이미지 선택 시에 갤러리 함수 호출 시 로그 번호 넘겨주기
+            // ToDo 갤러리 함수 호출 시 로그 번호 넘겨주기
             (activity as AddActivity).openGallery()
+            binding.ivImg.visibility = View.VISIBLE
             binding.ivImg.setImageBitmap((activity as AddActivity).currentBitmap)
         }
     }
@@ -37,7 +40,7 @@ class AddLogFragment : BaseFragment<FragmentAddLogBinding>(FragmentAddLogBinding
         super.onDestroyView()
     }
 
-    fun setItem() {
+    private fun setItem() {
         val s = (activity as AddActivity).addRoutineItemList
         (activity as AddActivity).addLogItemList.clear()
         for(i in 1..s.size) {
@@ -49,6 +52,27 @@ class AddLogFragment : BaseFragment<FragmentAddLogBinding>(FragmentAddLogBinding
                 null
             ))
         }
+    }
+
+    private fun setSlidingUpPanel() {
+        val i = (activity as AddActivity).addRoutineItemList.size
+
+        binding.linearImg1.visibility = View.INVISIBLE
+        binding.linearImg2.visibility = View.INVISIBLE
+        binding.linearImg3.visibility = View.INVISIBLE
+        binding.linearImg4.visibility = View.INVISIBLE
+        binding.linearImg5.visibility = View.INVISIBLE
+
+        if (i >= 1)
+            binding.linearImg1.visibility = View.VISIBLE
+        if (i >= 2)
+            binding.linearImg2.visibility = View.VISIBLE
+        if (i >= 3)
+            binding.linearImg3.visibility = View.VISIBLE
+        if (i >= 4)
+            binding.linearImg4.visibility = View.VISIBLE
+        if (i >= 5)
+            binding.linearImg5.visibility = View.VISIBLE
     }
 
     fun getTitle(): String {
