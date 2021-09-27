@@ -27,11 +27,24 @@ class AddLogFragment : BaseFragment<FragmentAddLogBinding>(FragmentAddLogBinding
 
         setSlidingUpPanel()
 
-        binding.button.setOnClickListener {
-            // ToDo 갤러리 함수 호출 시 로그 번호 넘겨주기
-            (activity as AddActivity).openGallery()
-            binding.ivImg.visibility = View.VISIBLE
-            binding.ivImg.setImageBitmap((activity as AddActivity).currentBitmap)
+        binding.btnImg1.setOnClickListener {
+            (activity as AddActivity).openGallery(1)
+        }
+
+        binding.btnImg2.setOnClickListener {
+            (activity as AddActivity).openGallery(2)
+        }
+
+        binding.btnImg3.setOnClickListener {
+            (activity as AddActivity).openGallery(3)
+        }
+
+        binding.btnImg4.setOnClickListener {
+            (activity as AddActivity).openGallery(4)
+        }
+
+        binding.btnImg5.setOnClickListener {
+            (activity as AddActivity).openGallery(5)
         }
     }
 
@@ -73,6 +86,28 @@ class AddLogFragment : BaseFragment<FragmentAddLogBinding>(FragmentAddLogBinding
             binding.linearImg4.visibility = View.VISIBLE
         if (i >= 5)
             binding.linearImg5.visibility = View.VISIBLE
+    }
+
+    fun setImage(i : Int) {
+        //ToDo 글라이드로 이미지 설정
+        when (i) {
+            1 -> {
+                binding.ivImg1.visibility = View.VISIBLE
+                binding.ivImg1.setImageBitmap((activity as AddActivity).currentBitmap)
+            }
+            2 -> {
+
+            }
+            3 -> {
+
+            }
+            4 -> {
+
+            }
+            5 -> {
+
+            }
+        }
     }
 
     fun getTitle(): String {

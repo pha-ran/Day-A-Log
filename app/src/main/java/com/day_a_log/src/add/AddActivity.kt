@@ -113,23 +113,39 @@ class AddActivity : BaseActivity<ActivityAddBinding>(ActivityAddBinding::inflate
         return super.onOptionsItemSelected(item)
     }
 
-    internal fun openGallery() {
+    internal fun openGallery(i : Int) {
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = MediaStore.Images.Media.CONTENT_TYPE
-        startActivityForResult(intent, 200) //FLAG_REQ_STORAGE
+        when (i) {
+            1 -> {startActivityForResult(intent, 1001)}
+            2 -> {startActivityForResult(intent, 1002)}
+            3 -> {startActivityForResult(intent, 1003)}
+            4 -> {startActivityForResult(intent, 1004)}
+            5 -> {startActivityForResult(intent, 1005)}
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (requestCode == 200 && resultCode == RESULT_OK){
+        if (resultCode == RESULT_OK){
             //ToDo url, bitmap 배열로 만든 후 번호 매칭 (requestCode) 해서 업로드
+            when (requestCode) {
+                1001 -> {
+                    currentImageURI = data?.data
+                    println("URI : $currentImageURI")
+                    showImage(currentImageURI)
+                    uploadImage()
 
-            currentImageURI = data?.data
-            println("URI : $currentImageURI")
-            showImage(currentImageURI)
-            uploadImage()
-        } else{
+                    (supportFragmentManager.findFragmentById(R.id.frameLayout) as AddLogFragment).setImage(1)
+                }
+                1002 -> {showCustomToast("2번 이미지")}
+                1003 -> {showCustomToast("3번 이미지")}
+                1004 -> {showCustomToast("4번 이미지")}
+                1005 -> {showCustomToast("5번 이미지")}
+            }
+        }
+        else{
             println("ActivityResult, something wrong")
         }
     }

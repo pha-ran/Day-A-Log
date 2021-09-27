@@ -104,14 +104,14 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:id="@+id/iv_img"
+                        android:id="@+id/iv_img1"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
                         android:visibility="gone"/>
 
                     <Button
-                        android:id="@+id/button"
+                        android:id="@+id/btn_img1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="사진1 선택" />
@@ -135,7 +135,7 @@
                         android:visibility="gone"/>
 
                     <Button
-                        android:id="@+id/button2"
+                        android:id="@+id/btn_img2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="사진2 선택" />
@@ -159,7 +159,7 @@
                         android:visibility="gone"/>
 
                     <Button
-                        android:id="@+id/button3"
+                        android:id="@+id/btn_img3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="사진3 선택" />
@@ -191,7 +191,7 @@
                         android:visibility="gone"/>
 
                     <Button
-                        android:id="@+id/button4"
+                        android:id="@+id/btn_img4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="사진4 선택" />
@@ -215,7 +215,7 @@
                         android:visibility="gone"/>
 
                     <Button
-                        android:id="@+id/button5"
+                        android:id="@+id/btn_img5"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="사진5 선택" />
