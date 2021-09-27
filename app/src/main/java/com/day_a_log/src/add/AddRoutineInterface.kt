@@ -6,7 +6,9 @@ import retrofit2.Call
 import retrofit2.http.*
 
 interface AddRoutineInterface {
-    @POST("routines")
-    fun postAddRoutine(@Body params: AddRoutineRequest)
-    : Call<AddRoutineResponse>
+    @POST("routines/{userIdx}")
+    fun postAddRoutine(
+        @Path("userIdx") userIdx : Int,
+        @Body params: AddRoutineRequest
+    ) : Call<AddRoutineResponse>
 }

@@ -30,6 +30,7 @@ class AddActivity : BaseActivity<ActivityAddBinding>(ActivityAddBinding::inflate
     private var page = 0
     private var currentImageURI : Uri? = null
     internal var currentBitmap : Bitmap? = null
+    internal var downloadImageURI = mutableListOf<Uri>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -72,14 +73,14 @@ class AddActivity : BaseActivity<ActivityAddBinding>(ActivityAddBinding::inflate
                 else {
                     setSupportActionBar(binding.toolbar)
                     replaceFragment(0)
-                    showCustomToast("$page")
+                    //showCustomToast("$page")
                 }
             }
             R.id.tb_add_next -> {
                 if (page == 0) {
                     item.setIcon(R.drawable.ic_activity_add_upload)
                     replaceFragment(1)
-                    showCustomToast("$page")
+                    //showCustomToast("$page")
                 }
                 else {
                     title = (supportFragmentManager.findFragmentById(R.id.frameLayout) as AddLogFragment).getTitle()
@@ -100,7 +101,6 @@ class AddActivity : BaseActivity<ActivityAddBinding>(ActivityAddBinding::inflate
 
                     showLoadingDialog(this)
                     AddRoutineService(this).tryPostAddRoutine(AddRoutineRequest(
-                        ApplicationClass.sSharedPreferences.getInt(ApplicationClass.User_Idx, -1),
                         "T",
                         title!!,
                         "EMPTY",
@@ -129,7 +129,7 @@ class AddActivity : BaseActivity<ActivityAddBinding>(ActivityAddBinding::inflate
         super.onActivityResult(requestCode, resultCode, data)
 
         if (resultCode == RESULT_OK){
-            //ToDo url, bitmap 배열로 만든 후 번호 매칭 (requestCode) 해서 업로드
+            //ToDo uri 배열로 만든 후 번호 매칭 (requestCode) 해서 업로드, 다운로드
             when (requestCode) {
                 1001 -> {
                     currentImageURI = data?.data
@@ -164,6 +164,7 @@ class AddActivity : BaseActivity<ActivityAddBinding>(ActivityAddBinding::inflate
     }
 
     private fun showImage(uri : Uri?) {
+        //ToDo 글라이드 사용시 삭제
         val input = contentResolver.openInputStream(uri!!)
         currentBitmap = BitmapFactory.decodeStream(input)
         input!!.close()

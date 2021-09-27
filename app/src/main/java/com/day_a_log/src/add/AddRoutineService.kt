@@ -10,7 +10,10 @@ import retrofit2.Response
 class AddRoutineService(val view: AddActivity) {
     fun tryPostAddRoutine(addRoutineRequest: AddRoutineRequest){
         val addRoutineInterface = ApplicationClass.sRetrofit.create(AddRoutineInterface::class.java)
-        addRoutineInterface.postAddRoutine(addRoutineRequest).enqueue(object : Callback<AddRoutineResponse>{
+        addRoutineInterface.postAddRoutine(
+            ApplicationClass.sSharedPreferences.getInt(ApplicationClass.User_Idx, -1),
+            addRoutineRequest
+        ).enqueue(object : Callback<AddRoutineResponse>{
             override fun onResponse(call: Call<AddRoutineResponse>, response: Response<AddRoutineResponse>) {
                 view.onPostAddRoutineSuccess(response.body() as AddRoutineResponse)
             }
