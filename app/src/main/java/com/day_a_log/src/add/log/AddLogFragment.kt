@@ -93,7 +93,7 @@ class AddLogFragment : BaseFragment<FragmentAddLogBinding>(FragmentAddLogBinding
         when (i) {
             1 -> {
                 binding.ivImg1.visibility = View.VISIBLE
-                binding.ivImg1.setImageBitmap((activity as AddActivity).currentBitmap)
+                // ...
             }
             2 -> {
 

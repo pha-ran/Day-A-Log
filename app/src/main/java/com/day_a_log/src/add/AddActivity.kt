@@ -29,14 +29,17 @@ class AddActivity : BaseActivity<ActivityAddBinding>(ActivityAddBinding::inflate
     internal var title : String? = null
     private var page = 0
     private var currentImageURI : Uri? = null
-    internal var currentBitmap : Bitmap? = null
-    internal var downloadImageURI = mutableListOf<Uri>()
+    internal var downloadImageURI = ArrayList<Uri>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        var i = 0
         currentImageURI = null
-        currentBitmap = null
+        downloadImageURI.clear()
+        for (i in 0..4) {
+            downloadImageURI.add(Uri.EMPTY)
+        }
 
         setSupportActionBar(binding.toolbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
@@ -134,8 +137,8 @@ class AddActivity : BaseActivity<ActivityAddBinding>(ActivityAddBinding::inflate
                 1001 -> {
                     currentImageURI = data?.data
                     println("URI : $currentImageURI")
-                    showImage(currentImageURI)
                     uploadImage()
+                    //ToDo AddLogFragment의 이미지 설정함수 호출
 
                     (supportFragmentManager.findFragmentById(R.id.frameLayout) as AddLogFragment).setImage(1)
                 }
@@ -143,6 +146,7 @@ class AddActivity : BaseActivity<ActivityAddBinding>(ActivityAddBinding::inflate
                 1003 -> {showCustomToast("3번 이미지")}
                 1004 -> {showCustomToast("4번 이미지")}
                 1005 -> {showCustomToast("5번 이미지")}
+                else -> {showCustomToast("갤러리 요청 코드 오류")}
             }
         }
         else{
@@ -161,14 +165,6 @@ class AddActivity : BaseActivity<ActivityAddBinding>(ActivityAddBinding::inflate
     override fun onPostAddRoutineFailure(message: String) {
         dismissLoadingDialog()
         showCustomToast(message)
-    }
-
-    private fun showImage(uri : Uri?) {
-        //ToDo 글라이드 사용시 삭제
-        val input = contentResolver.openInputStream(uri!!)
-        currentBitmap = BitmapFactory.decodeStream(input)
-        input!!.close()
-        println("BITMAP : $currentBitmap")
     }
 
     private fun uploadImage() {
@@ -200,6 +196,8 @@ class AddActivity : BaseActivity<ActivityAddBinding>(ActivityAddBinding::inflate
 
         storageRef.child("test/698263649").downloadUrl.addOnSuccessListener {
             println("다운로드 성공 : $it")
+            downloadImageURI[3] = it
+            println("다운로드 URI " + downloadImageURI[3])
         }.addOnFailureListener {
             println("다운로드 실패")
         }
