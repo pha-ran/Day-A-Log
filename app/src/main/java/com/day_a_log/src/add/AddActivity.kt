@@ -34,18 +34,23 @@ class AddActivity : BaseActivity<ActivityAddBinding>(ActivityAddBinding::inflate
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        var i = 0
+        initialSet()
+        setActionBar()
+        replaceFragment(0)
+    }
+
+    private fun initialSet() {
         currentImageURI = null
         downloadImageURI.clear()
         for (i in 0..4) {
             downloadImageURI.add(Uri.EMPTY)
         }
+    }
 
+    private fun setActionBar() {
         setSupportActionBar(binding.toolbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_activity_add_back)
-
-        replaceFragment(0)
     }
 
     private fun replaceFragment(p : Int) {
@@ -96,7 +101,7 @@ class AddActivity : BaseActivity<ActivityAddBinding>(ActivityAddBinding::inflate
                                 s[i-1].loc,
                                 s[i-1].act,
                                 s[i-1].log,
-                                "",
+                                downloadImageURI[i-1].toString(),
                                 "T",
                                 0
                             ))
@@ -137,11 +142,9 @@ class AddActivity : BaseActivity<ActivityAddBinding>(ActivityAddBinding::inflate
                 1001 -> {
                     currentImageURI = data?.data
                     println("URI : $currentImageURI")
-                    uploadImage()
-                    //ToDo AddLogFragment의 이미지 설정함수 호출
-
-                    (supportFragmentManager.findFragmentById(R.id.frameLayout) as AddLogFragment).setImage(1)
+                    uploadImage(1) //업로드 후 성공시 다운로드, 이미지 설정
                 }
+                //ToDo
                 1002 -> {showCustomToast("2번 이미지")}
                 1003 -> {showCustomToast("3번 이미지")}
                 1004 -> {showCustomToast("4번 이미지")}
@@ -167,7 +170,7 @@ class AddActivity : BaseActivity<ActivityAddBinding>(ActivityAddBinding::inflate
         showCustomToast(message)
     }
 
-    private fun uploadImage() {
+    private fun uploadImage(i : Int) {
         //파이어베이스 사진 업로드
         val storage = Firebase.storage
         val storageRef = storage.reference
@@ -185,19 +188,22 @@ class AddActivity : BaseActivity<ActivityAddBinding>(ActivityAddBinding::inflate
             showCustomToast("업로드 성공")
             println("$taskSnapshot")
 
-            downloadImage()
+            downloadImage(i)
         }
     }
 
-    private fun downloadImage() {
+    private fun downloadImage(i : Int) {
         //파이어베이스 사진 다운로드
         val storage = Firebase.storage
         val storageRef = storage.reference
 
         storageRef.child("test/698263649").downloadUrl.addOnSuccessListener {
             println("다운로드 성공 : $it")
-            downloadImageURI[3] = it
-            println("다운로드 URI " + downloadImageURI[3])
+            downloadImageURI[i-1] = it
+            println("다운로드 URI " + downloadImageURI[i-1])
+
+            (supportFragmentManager.findFragmentById(R.id.frameLayout) as AddLogFragment)
+                .setImage(i, it)
         }.addOnFailureListener {
             println("다운로드 실패")
         }

@@ -1,9 +1,11 @@
 package com.day_a_log.src.add.log
 
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
+import com.bumptech.glide.Glide
 import com.day_a_log.R
 import com.day_a_log.config.BaseFragment
 import com.day_a_log.databinding.FragmentAddLogBinding
@@ -88,15 +90,16 @@ class AddLogFragment : BaseFragment<FragmentAddLogBinding>(FragmentAddLogBinding
             binding.linearImg5.visibility = View.VISIBLE
     }
 
-    fun setImage(i : Int) {
-        //ToDo 글라이드로 이미지 설정
+    fun setImage(i : Int, it : Uri) {
         when (i) {
             1 -> {
                 binding.ivImg1.visibility = View.VISIBLE
-                // ...
+                Glide.with(this)
+                    .load(it)
+                    .into(binding.ivImg1)
             }
             2 -> {
-
+                //ToDo
             }
             3 -> {
 
