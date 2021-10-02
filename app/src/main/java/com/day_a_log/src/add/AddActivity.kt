@@ -1,8 +1,6 @@
 package com.day_a_log.src.add
 
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -21,6 +19,7 @@ import com.day_a_log.src.add.routine.AddRoutineFragment
 import com.day_a_log.src.add.routine.models.AddRoutineItem
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
+import java.text.SimpleDateFormat
 
 class AddActivity : BaseActivity<ActivityAddBinding>(ActivityAddBinding::inflate), AddRoutineView {
 
@@ -175,7 +174,17 @@ class AddActivity : BaseActivity<ActivityAddBinding>(ActivityAddBinding::inflate
         val storage = Firebase.storage
         val storageRef = storage.reference
 
-        val imageRef = storageRef.child("test/${currentImageURI!!.lastPathSegment}")
+        val currentTime = System.currentTimeMillis() // ms로 반환
+        val dataFormat1 = SimpleDateFormat("yyyyMMdd") // 년 월 일
+        val dataFormat2 = SimpleDateFormat("HHmmss") // 시(0~23) 분 초
+        val userIdx = ApplicationClass.sSharedPreferences.getInt(ApplicationClass.User_Idx, -1)
+        val pathString = "DayALog_" +
+                "${userIdx}_" +
+                "${dataFormat1.format(currentTime)}_" +
+                "${dataFormat2.format(currentTime)}_" +
+                "$i"
+
+        val imageRef = storageRef.child("test/$pathString")
         val uploadTask = imageRef.putFile(currentImageURI!!)
 
         // Register observers to listen for when the download is done or if it fails
@@ -188,16 +197,16 @@ class AddActivity : BaseActivity<ActivityAddBinding>(ActivityAddBinding::inflate
             showCustomToast("업로드 성공")
             println("$taskSnapshot")
 
-            downloadImage(i)
+            downloadImage(i, pathString)
         }
     }
 
-    private fun downloadImage(i : Int) {
+    private fun downloadImage(i : Int, p : String) {
         //파이어베이스 사진 다운로드
         val storage = Firebase.storage
         val storageRef = storage.reference
 
-        storageRef.child("test/698263649").downloadUrl.addOnSuccessListener {
+        storageRef.child("test/$p").downloadUrl.addOnSuccessListener {
             println("다운로드 성공 : $it")
             downloadImageURI[i-1] = it
             println("다운로드 URI " + downloadImageURI[i-1])
