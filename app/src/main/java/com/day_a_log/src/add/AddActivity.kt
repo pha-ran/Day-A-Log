@@ -136,18 +136,28 @@ class AddActivity : BaseActivity<ActivityAddBinding>(ActivityAddBinding::inflate
         super.onActivityResult(requestCode, resultCode, data)
 
         if (resultCode == RESULT_OK){
-            //ToDo uri 배열로 만든 후 번호 매칭 (requestCode) 해서 업로드, 다운로드
             when (requestCode) {
                 1001 -> {
                     currentImageURI = data?.data
-                    println("URI : $currentImageURI")
+                    //println("URI : $currentImageURI")
                     uploadImage(1) //업로드 후 성공시 다운로드, 이미지 설정
                 }
-                //ToDo
-                1002 -> {showCustomToast("2번 이미지")}
-                1003 -> {showCustomToast("3번 이미지")}
-                1004 -> {showCustomToast("4번 이미지")}
-                1005 -> {showCustomToast("5번 이미지")}
+                1002 -> {
+                    currentImageURI = data?.data
+                    uploadImage(2)
+                }
+                1003 -> {
+                    currentImageURI = data?.data
+                    uploadImage(3)
+                }
+                1004 -> {
+                    currentImageURI = data?.data
+                    uploadImage(4)
+                }
+                1005 -> {
+                    currentImageURI = data?.data
+                    uploadImage(5)
+                }
                 else -> {showCustomToast("갤러리 요청 코드 오류")}
             }
         }

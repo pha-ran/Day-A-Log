@@ -99,16 +99,28 @@ class AddLogFragment : BaseFragment<FragmentAddLogBinding>(FragmentAddLogBinding
                     .into(binding.ivImg1)
             }
             2 -> {
-                //ToDo
+                binding.ivImg2.visibility = View.VISIBLE
+                Glide.with(this)
+                    .load(it)
+                    .into(binding.ivImg2)
             }
             3 -> {
-
+                binding.ivImg3.visibility = View.VISIBLE
+                Glide.with(this)
+                    .load(it)
+                    .into(binding.ivImg3)
             }
             4 -> {
-
+                binding.ivImg4.visibility = View.VISIBLE
+                Glide.with(this)
+                    .load(it)
+                    .into(binding.ivImg4)
             }
             5 -> {
-
+                binding.ivImg5.visibility = View.VISIBLE
+                Glide.with(this)
+                    .load(it)
+                    .into(binding.ivImg5)
             }
         }
     }
