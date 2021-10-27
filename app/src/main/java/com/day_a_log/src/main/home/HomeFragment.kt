@@ -7,11 +7,16 @@ import com.day_a_log.R
 import com.day_a_log.config.BaseFragment
 import com.day_a_log.databinding.FragmentHomeBinding
 import com.day_a_log.src.add.AddActivity
+import com.day_a_log.src.main.home.models.RoutinesResponse
 
-class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind, R.layout.fragment_home) {
+class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind, R.layout.fragment_home),
+                        RoutinesView{
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        showLoadingDialog(requireContext())
+        RoutinesService(this).tryGetRoutines()
 
         binding.toolbar.setOnMenuItemClickListener {
             when (it.itemId) {
@@ -27,5 +32,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
             }
             true
         }
+    }
+
+    override fun onGetRoutinesSuccess(response: RoutinesResponse) {
+        dismissLoadingDialog()
+        showCustomToast(response.result[0].idx.toString())
+    }
+
+    override fun onGetRoutinesFailure(message: String) {
+        dismissLoadingDialog()
+        showCustomToast(message)
     }
 }
