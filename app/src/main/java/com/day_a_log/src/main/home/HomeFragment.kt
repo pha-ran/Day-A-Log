@@ -3,20 +3,25 @@ package com.day_a_log.src.main.home
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
+import com.bumptech.glide.RequestManager
 import com.day_a_log.R
 import com.day_a_log.config.BaseFragment
 import com.day_a_log.databinding.FragmentHomeBinding
 import com.day_a_log.src.add.AddActivity
+import com.day_a_log.src.main.home.models.Result
 import com.day_a_log.src.main.home.models.RoutinesResponse
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind, R.layout.fragment_home),
                         RoutinesView{
+    lateinit var glideManager : RequestManager
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        showLoadingDialog(requireContext())
-        RoutinesService(this).tryGetRoutines()
+        glideManager = Glide.with(this)
+        getRoutines()
 
         binding.toolbar.setOnMenuItemClickListener {
             when (it.itemId) {
@@ -34,13 +39,28 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
         }
     }
 
+    private fun getRoutines() {
+        showLoadingDialog(requireContext())
+        RoutinesService(this).tryGetRoutines()
+    }
+
     override fun onGetRoutinesSuccess(response: RoutinesResponse) {
         dismissLoadingDialog()
         showCustomToast(response.result[0].idx.toString())
+
+        setRecyclerView(response.result)
     }
 
     override fun onGetRoutinesFailure(message: String) {
         dismissLoadingDialog()
         showCustomToast(message)
+    }
+
+    private fun setRecyclerView(data : List<Result>) {
+        val adaptor = HomeAdaptor(data, glideManager)
+        val layoutManager = LinearLayoutManager(requireContext())
+        layoutManager.orientation = LinearLayoutManager.VERTICAL
+        binding.rv.layoutManager = layoutManager
+        binding.rv.adapter = adaptor
     }
 }
