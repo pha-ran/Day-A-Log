@@ -1,24 +1,35 @@
 package com.day_a_log.src.main.home
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ImageView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
 import com.day_a_log.R
 import com.day_a_log.databinding.ItemRoutineBinding
-import com.day_a_log.src.main.home.models.Result
+import com.day_a_log.src.main.home.models.RoutinesResult
 
-class HomeAdaptor(private val routinesItemList : List<Result>, private val gm : RequestManager) : RecyclerView.Adapter<HomeAdaptor.HomeViewHolder>() {
+class HomeAdaptor(private val routinesItemList : List<RoutinesResult>, private val gm : RequestManager, private val c : Context)
+    : RecyclerView.Adapter<HomeAdaptor.HomeViewHolder>() {
     //ToDo 진행중
 
     inner class HomeViewHolder(private val binding: ItemRoutineBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(data: Result) {
+        fun bind(data: RoutinesResult) {
+            binding.tvId.text = data.userId
+            binding.tvTime.text = data.updatedAgo
+
             gm.load(data.imgUrl)
                 .thumbnail(0.1f)
                 .error(R.drawable.ic_bnv_menu_profile_x)
                 .into(binding.ivProfileImage)
+
+            val innerRv = InnerRoutineAdaptor(R.drawable.ic_bnv_menu_profile_x)
+            binding.rv.adapter = innerRv
+            binding.rv.layoutManager = LinearLayoutManager(c, LinearLayoutManager.HORIZONTAL, false)
+            PagerSnapHelper().attachToRecyclerView(binding.rv)
+            innerRv.notifyDataSetChanged()
         }
     }
 

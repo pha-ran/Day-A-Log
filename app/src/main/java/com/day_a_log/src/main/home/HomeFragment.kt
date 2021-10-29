@@ -10,7 +10,7 @@ import com.day_a_log.R
 import com.day_a_log.config.BaseFragment
 import com.day_a_log.databinding.FragmentHomeBinding
 import com.day_a_log.src.add.AddActivity
-import com.day_a_log.src.main.home.models.Result
+import com.day_a_log.src.main.home.models.RoutinesResult
 import com.day_a_log.src.main.home.models.RoutinesResponse
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind, R.layout.fragment_home),
@@ -56,8 +56,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::bind
         showCustomToast(message)
     }
 
-    private fun setRecyclerView(data : List<Result>) {
-        val adaptor = HomeAdaptor(data, glideManager)
+    private fun setRecyclerView(data : List<RoutinesResult>) {
+        val adaptor = HomeAdaptor(data, glideManager, requireContext())
         val layoutManager = LinearLayoutManager(requireContext())
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         binding.rv.layoutManager = layoutManager
