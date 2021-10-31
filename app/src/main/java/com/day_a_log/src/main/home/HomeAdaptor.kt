@@ -11,9 +11,9 @@ import com.day_a_log.R
 import com.day_a_log.databinding.ItemRoutineBinding
 import com.day_a_log.src.main.home.models.RoutinesResult
 
-class HomeAdaptor(private val routinesItemList : List<RoutinesResult>, private val gm : RequestManager, private val c : Context)
+class HomeAdaptor(private val routinesItemList : List<RoutinesResult>, private val gm : RequestManager, private val context : Context)
     : RecyclerView.Adapter<HomeAdaptor.HomeViewHolder>() {
-    //ToDo 진행중
+    //ToDo 진행중 (생명주기 고려 새로고침 추가)
 
     inner class HomeViewHolder(private val binding: ItemRoutineBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(data: RoutinesResult) {
@@ -25,10 +25,12 @@ class HomeAdaptor(private val routinesItemList : List<RoutinesResult>, private v
                 .error(R.drawable.ic_bnv_menu_profile_x)
                 .into(binding.ivProfileImage)
 
-            val innerRv = InnerRoutineAdaptor(R.drawable.ic_bnv_menu_profile_x)
+            val innerRv = InnerRoutineAdaptor(data)
             binding.rv.adapter = innerRv
-            binding.rv.layoutManager = LinearLayoutManager(c, LinearLayoutManager.HORIZONTAL, false)
-            PagerSnapHelper().attachToRecyclerView(binding.rv)
+            binding.rv.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            if (binding.rv.onFlingListener == null) {   // 중복 적용시 오류
+                PagerSnapHelper().attachToRecyclerView(binding.rv)
+            }
             innerRv.notifyDataSetChanged()
         }
     }
